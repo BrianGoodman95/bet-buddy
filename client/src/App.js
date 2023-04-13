@@ -1,17 +1,32 @@
-import { Landing, Dashboard, Register, Error } from "./pages"
+import { Landing, Register, Error, ProtectedRoute, SkipSetup } from "./pages"
+import { Profile, Stats, AddBet, AllBets, SharedLayout } from "./pages/dashboard"
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <Link to='/'>Dashboard</Link>
-        <Link to='/register'>Register</Link>
-        <Link to='/landing'>Landing</Link>
-      </nav>
       <Routes>
-        <Route path='/' element={<Dashboard />} />
-        <Route path='/register' element={<Register />} />
+        <Route 
+          path='/' 
+          element={
+            <ProtectedRoute>
+              <SharedLayout/>
+            </ProtectedRoute>
+          } 
+        >
+          <Route index element={<Stats/>} />
+          <Route path="add-bet" element={<AddBet/>} />
+          <Route path="all-bets" element={<AllBets/>} />
+          <Route path="profile" element={<Profile/>} />
+        </Route>
+        <Route 
+          path='/register' 
+          element={
+            <SkipSetup>
+            <Register/>
+            </SkipSetup>
+          } 
+        />
         <Route path='/landing' element={<Landing />} />
         <Route path='*' element={<Error />} />
       </Routes>

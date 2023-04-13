@@ -1,16 +1,13 @@
-import {Logo} from '../components'
+import { Logo } from '../../components'
 import { Link } from 'react-router-dom'
-import Wrapper from '../assets/wrappers/DashboardFormPage'
+import Wrapper from '../../assets/wrappers/DashboardFormPage'
 
-const Dashboard = () => {
+const Stats = () => {
     return (
       <Wrapper> 
-        <nav>
-          <Logo />
-        </nav>
         <div className='Top Bar'> 
             <h1>
-                Make <span>Data</span> Awesome
+                Stats
             </h1>
             <Link to='/landing' className='btn btn-hero'>Landing Page</Link>
         </div>
@@ -18,5 +15,4 @@ const Dashboard = () => {
     )
   }
   
-  export default Dashboard
-
+  export default Stats

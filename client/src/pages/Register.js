@@ -1,8 +1,9 @@
 import {Logo, FormRow, Alert} from '../components'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import Wrapper from '../assets/wrappers/RegisterPage'
 import { useState, useEffect } from 'react'
 import { useAppContext } from '../context/appContext';
+import { useClearAlertEffect } from '../functions/useClearAlertEffect'
 
 const initialState = {
   name: '',
@@ -16,32 +17,11 @@ const Register = () => {
   //set local state
   const [values, setValues] = useState(initialState)
   //set global state
-  const { user, isLoading, showAlert, displayAlert, clearAlert, registerUser, loginUser } = useAppContext(); //setupUser too
-  const navigate = useNavigate();
+  const { isLoading, showAlert, clearAlert, registerUser, loginUser } = useAppContext(); //setupUser too
+  // const navigate = useNavigate();
   
   //define the useEffect hook to do something when anything from the "values" changes
-  useEffect(() => {
-    // console.log(values);
-    if (showAlert) { //if there's an alert, check if we should change it based on the new user values
-      checkAlert();
-    }
-  }, [values.email, values.password, values.name]);
-
-  useEffect(() =>{
-    if (user){
-      // Add timeout so doesn't jump immediately to next page. Better UX actually.
-      setTimeout(() =>{
-        navigate('/')
-      }, 1000)
-    }
-  }, [user, navigate])
-
-  const checkAlert = () => {
-    const {name,email,password,isMember} = values
-    if (email && password && ((isMember && !name) || (!isMember && name))) {
-      clearAlert()
-    }
-  }
+  useClearAlertEffect(showAlert, clearAlert, [values.email, values.password, values.name])
 
   //function to toggle between if a user should login or register
   const toggleMember = () => {
@@ -60,7 +40,7 @@ const Register = () => {
     const {name,email,password,isMember} = values
     // We're handling errors for missing valeus in the server instead now
       // if(!email || !password || (!isMember && !name)) {
-      //   displayAlert()
+      //   displayFailAlert()
       //   return
       // }
     const currentUser = {name, email, password}

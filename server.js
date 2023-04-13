@@ -10,11 +10,12 @@ import connectDB from './db/connect.js';
 
 // routers
 import authRouter from './routes/authRoutes.js';
-import jobsRouter from './routes/jobsRoutes.js';
+import betsRouter from './routes/betsRoutes.js';
 
 // middleware
 import notFoundMiddleware from './middleware/not-found.js';
 import errorHandleMiddleware from './middleware/error-handler.js';
+import authenticateUser from './middleware/auth.js';
 
 // makes json data available in the controllers. Built in express middleware
 app.use(express.json())
@@ -32,7 +33,7 @@ app.get('/',(req,res) => {
 
 // custom routes
 app.use('/api/v1/auth', authRouter)
-app.use('/api/v1/jobs', jobsRouter)
+app.use('/api/v1/bets', authenticateUser, betsRouter)
 
 // middleware to handle all undefined routes
 app.use(notFoundMiddleware)
