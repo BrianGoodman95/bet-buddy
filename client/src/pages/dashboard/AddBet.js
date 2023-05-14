@@ -2,14 +2,18 @@ import { useAppContext } from '../../context/appContext';
 import Wrapper from '../../assets/wrappers/DashboardFormPage';
 import { FormRow, FormRowSelect, Alert } from '../../components';
 import { useClearAlertEffect } from '../../functions/useClearAlertEffect'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react';
 
 const AddBet = () => {
   const {
-    handlebetChange,
+    handleBetChange,
     clearBetState,
     createBet,
     showAlert,
     clearAlert,
+    editBet,
+    editBetId,
     isLoading,
     isEditing,
     betSource,
@@ -30,15 +34,41 @@ const AddBet = () => {
     betStatusOptions,
   } = useAppContext();
 
-
   useClearAlertEffect(showAlert, clearAlert, [eventCategory, eventDescription, oddsMaker, spread, pick, wager, jobLocation])
+  // Here we set an effect to naviagte to a page and clear bet state when the state variable isEditing changes from true to false (which is the case when the edit bet was successful)
+  const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (!isEditing) {
+  //     setTimeout(() => {
+  //       clearBetState()
+  //       navigate('/all-bets');
+  //     }, 2000);
+  //   }
+  // }, [isEditing, navigate, clearBetState]);
+  // const delay = ms => new Promise(res => setTimeout(() => res(), ms));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isEditing) {
+      editBet({
+        betSource,
+        eventCategory,
+        eventDescription,
+        oddsMaker,
+        spread,
+        pick,
+        wager,
+        jobLocation,
+        betStatus
+      });
+      setTimeout(() => {
+        clearBetState()
+        navigate('/all-bets');
+      }, 2000);
       return
     }
     createBet({
+      betSource,
       eventCategory,
       eventDescription,
       oddsMaker,
@@ -60,7 +90,7 @@ const AddBet = () => {
   const handleBetInput = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    handlebetChange({ name, value });
+    handleBetChange({ name, value });
   }
 
   return (

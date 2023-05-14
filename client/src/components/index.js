@@ -5,5 +5,12 @@ import Alert from './Alerts'
 import Navbar from './Navbar'
 import SmallSidebar from './SmallSidebar'
 import BigSidebar from './BigSidebar'
+import SearchContainer from './SearchContainer'
+import AllBetsContainer from './AllBetsContainer'
+import BetInfo from './BetInfo'
+import Loading from './Loading'
+import StatsContainer from './StatsContainer'
+import ChartsContainer from './ChartsContainer'
+import PageButtonContainer from './PageButtonContainer'
 
-export { Logo, FormRow, FormRowSelect, Alert, Navbar, SmallSidebar, BigSidebar }
+export { Logo, FormRow, FormRowSelect, Alert, Navbar, SmallSidebar, BigSidebar, SearchContainer, AllBetsContainer, BetInfo, StatsContainer, ChartsContainer, Loading, PageButtonContainer }

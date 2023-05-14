@@ -24,6 +24,15 @@ import {
     CREATE_BET_ERROR,
     GET_BETS_BEGIN,
     GET_BETS_SUCCESS,
+    SET_EDIT_BET,
+    EDIT_BET_BEGIN,
+    EDIT_BET_SUCCESS,
+    EDIT_BET_ERROR,
+    DELETE_BET_BEGIN,
+    SHOW_STATS_BEGIN,
+    SHOW_STATS_SUCCESS,
+    CLEAR_FILTER_STATE,
+    CHANGE_PAGE,
 } from "./actions"
 
 import { initialState } from "./appContext"
@@ -113,24 +122,6 @@ const reducer = (state, action) => {
             alertText: 'Success! Redirecting...'
         }
     }
-    if (action.type === LOGIN_USER_ERROR){
-        return {
-            ...state,
-            user: null,
-            token: null,
-            userLocation: '',
-            isLoading: false,
-            showAlert: true,
-            alertType: 'danger',
-            alertText: action.payload.msg
-        }
-    }
-    if (action.type === TOGGLE_SIDEBAR) {
-        return {
-            ...state,
-            showSidebar: !state.showSidebar,
-        }
-    }
     if (action.type === LOGOUT_USER) {
         return {
             ...initialState,
@@ -159,21 +150,17 @@ const reducer = (state, action) => {
             alertText: 'User Information Saved!'
         }
     }
-    if (action.type === UPDATE_USER_ERROR) {
-        return {
-            ...state,
-            isLoading: false
-        }
-    }
     if (action.type === HANDLE_BET_CHANGE) {
         return {
             ...state,
-            [action.payload.name]: action.payload.value
+            [action.payload.name]: action.payload.value,
+            page: 1
         }
     }
     if (action.type === CLEAR_BET_STATE) {
         const initialState = {
             isEditing: false,
+            showAlert: false,
             editBetId: '',
             betSource: "Registered",
             betSourceOptions: ['Registered', 'Custom'],
@@ -193,6 +180,22 @@ const reducer = (state, action) => {
         }
         return { ...state, ...initialState }
     }
+    if (action.type === CLEAR_FILTER_STATE) {
+        const initialState = {
+            isEditing: false,
+            showAlert: false,
+            editBetId: '',
+            search: '',
+            searchType: '',
+            searchSource: 'all',
+            searchCategory: 'all',
+            searchOddsMaker: 'all',
+            searchPick: 'all',
+            searchStatus: 'all',
+            sort: 'newest',
+        }
+        return { ...state, ...initialState }
+    }
     if (action.type === CREATE_BET_BEGIN) {
         return {
             ...state,
@@ -206,12 +209,6 @@ const reducer = (state, action) => {
             showAlert: true,
             alertType: 'success',
             alertText: 'Bet Created!'
-        }
-    }
-    if (action.type === CREATE_BET_ERROR) {
-        return {
-            ...state,
-            isLoading: false
         }
     }
     if (action.type === GET_BETS_BEGIN) {
@@ -228,6 +225,72 @@ const reducer = (state, action) => {
             bets: action.payload.bets,
             totalBets: action.payload.totalBets,
             numOfPages: action.payload.numOfPages,
+        }
+    }
+    if (action.type === SET_EDIT_BET) {
+        const bet = state.bets.find(bet => bet._id === action.payload.id)
+        const { _id, betSource, eventCategory, eventDescription, oddsMaker, pick, spread, wager, betStatus } = bet
+        return {
+            ...state,
+            isEditing: true,
+            editBetId: _id,
+            betSource: betSource,
+            eventCategory: eventCategory,
+            eventDescription: eventDescription,
+            oddsMaker: oddsMaker,
+            pick: pick,
+            spread: spread,
+            wager: wager,
+            betStatus: betStatus,
+        }
+    }
+    if (action.type === EDIT_BET_BEGIN) {
+        return {
+            ...state,
+            isLoading: true,
+        }
+    }
+    if (action.type === EDIT_BET_SUCCESS) {
+        return {
+            ...state,
+            isLoading: false,
+            isEditing: false,
+            showAlert: true,
+            alertType: 'success',
+            alertText: 'Bet Updated!'
+        }
+    }
+    if (action.type === DELETE_BET_BEGIN) {
+        return {
+            ...state,
+            isLoading: true,
+        }
+    }
+    if (action.type === SHOW_STATS_BEGIN) {
+        return {
+            ...state,
+            isLoading: true,
+            showAlert: false,
+        }
+    }
+    if (action.type === SHOW_STATS_SUCCESS) {
+        return {
+            ...state,
+            stats: action.payload.stats,
+            monthlyBets: action.payload.monthlyBets,
+            isLoading: false
+        }
+    }
+    if (action.type === TOGGLE_SIDEBAR) {
+        return {
+            ...state,
+            showSidebar: !state.showSidebar,
+        }
+    }
+    if (action.type === CHANGE_PAGE) {
+        return {
+            ...state,
+            page: action.payload.page
         }
     }
 

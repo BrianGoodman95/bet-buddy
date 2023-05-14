@@ -1,6 +1,8 @@
 import React, {useReducer, useContext } from 'react';
 import reducer from './reducer';
 import axios from 'axios';
+// import useNavToPage from '../functions/useNavToPage';
+import { useNavigate } from "react-router-dom";
 
 import { 
     REDIRECT_SUCCESS_ALERT,
@@ -12,19 +14,24 @@ import {
     REGISTER_USER_ERROR,
     LOGIN_USER_BEGIN,
     LOGIN_USER_SUCCESS,
-    LOGIN_USER_ERROR,
     TOGGLE_SIDEBAR,
     LOGOUT_USER,
     UPDATE_USER_BEGIN,
     UPDATE_USER_SUCCESS,
-    UPDATE_USER_ERROR,
     HANDLE_BET_CHANGE,
     CLEAR_BET_STATE,
     CREATE_BET_BEGIN,
     CREATE_BET_SUCCESS,
-    CREATE_BET_ERROR,
     GET_BETS_BEGIN,
     GET_BETS_SUCCESS,
+    SET_EDIT_BET,
+    EDIT_BET_BEGIN,
+    EDIT_BET_SUCCESS,
+    DELETE_BET_BEGIN,
+    SHOW_STATS_BEGIN,
+    SHOW_STATS_SUCCESS,
+    CLEAR_FILTER_STATE,
+    CHANGE_PAGE,
 } from "./actions"
 
 const token = localStorage.getItem('token')
@@ -57,11 +64,22 @@ export const initialState = {
     spreadOptions: ['+180', '-250'],
     wager: '',
     betStatus: 'Unsettled',
-    betStatusOptions: ["Won", "Lost", "Push", "Live", "Unsettled"],
+    betStatusOptions: ["Won", "Lost", "Push", "Live", "Unsettled"], //I want to combine Live and Unsettled to Open
     bets: [],
     totalBets: 0,
     page: 1,
     numOfPages: 1,
+    stats: {},
+    monthlyBets: [],
+    search: '',
+    searchType: '',
+    searchSource: 'all',
+    searchCategory: 'all',
+    searchOddsMaker: 'all',
+    searchPick: 'all',
+    searchStatus: 'all',
+    sort: 'newest',
+    sortOptions: ['newest', 'oldest', 'a-z', 'z-a']
 };
 
 const AppContext = React.createContext();
@@ -72,6 +90,10 @@ const AppProvider = ({ children }) => {
     //to pass in an object(action) to the custom reducer function we defined.
     const [state, dispatch] = useReducer(reducer, initialState);
     const delay = ms => new Promise(res => setTimeout(() => res(), ms));
+    function useNavigateTo(url) {
+        const navigate = useNavigate();
+        navigate(url);
+    }
 
     /* ####### LOCAL STORAGE FUNCTIONS ####### */
     const addUserToLocalStorage = ({user, token, location}) => {
@@ -225,7 +247,7 @@ const AppProvider = ({ children }) => {
 
 
     /* ###### ADD/EDIT BET FUNCTIONS ##### */
-    const handlebetChange = ({ name, value }) => {
+    const handleBetChange = ({ name, value }) => {
         dispatch({
             type: HANDLE_BET_CHANGE,
             payload: {
@@ -257,9 +279,44 @@ const AppProvider = ({ children }) => {
         // clearAlert()
     }
 
-    /* ###### GET BET FUNCTIONS ##### */
+    const setEditBet = (id) => {
+        dispatch({ type: SET_EDIT_BET, payload: { id } })
+    }
+    const editBet = async (bet) => {
+        dispatch({ type: EDIT_BET_BEGIN });
+        // Try Logging in the user!
+        try {
+            await authFetch.patch(`/bets/${state.editBetId}`, bet); //Don't need to put currnetUser because we add the userId to the req.user in the auth.js middleware
+            dispatch({ type: EDIT_BET_SUCCESS })
+        } catch (error) {
+            console.log(error)
+            if (error.response.status === 401) return
+            // dispatch({ type: CREATE_BET_ERROR });
+            serverErrorAlert(error);
+        }
+    }
+    const deleteBet = async (betId) => {
+        dispatch({ type: DELETE_BET_BEGIN });
+        // Try Logging in the user!
+        try {
+            const response = await authFetch.delete(`/bets/${betId}`); //Don't need to put currnetUser because we add the userId to the req.user in the auth.js middleware
+            // dispatch({ type: DELETE_BET_SUCCESS })
+            await delay(1000);
+            getBets();
+        } catch (error) {
+            console.log(error)
+            if (error.response.status === 401) return
+            // dispatch({ type: CREATE_BET_ERROR });
+            serverErrorAlert(error);
+        }
+    }
+
     const getBets = async () => {
-        let url = `/bets`
+        const { search, searchSource, searchCategory, searchOddsMaker, searchPick, searchStatus, sort, page } = state
+        let url = `/bets?page=${page}&betSource=${searchSource}&eventCategory=${searchCategory}&oddsMaker=${searchOddsMaker}&pick=${searchPick}&betStatus=${searchStatus}&sort=${sort}`
+        if (search) {
+            url = url + `&search=${search}`
+        }
         dispatch({ type: GET_BETS_BEGIN });
         try {
             const response = await authFetch.get(url); //Don't need to put currnetUser because we add the userId to the req.user in the auth.js middleware
@@ -281,11 +338,44 @@ const AppProvider = ({ children }) => {
         // clearAlert()
     }
 
+    /* ###### SEARCH FUNCTIONALITY ####### */
+    const clearFilters = async () => {
+        dispatch({ type: CLEAR_FILTER_STATE });
+        await delay(1000);
+        getBets();
+    }
+
+    /* STATS PAGE STUFF */
+    const showStats = async () => {
+        dispatch({ type: SHOW_STATS_BEGIN })
+        try {
+            const { data } = await authFetch('/bets/stats')
+            dispatch({
+                type: SHOW_STATS_SUCCESS,
+                payload: {
+                    stats: data.defaultStats,
+                    monthlyBets: data.monthlyBets,
+                }
+            })
+        } catch (error) {
+            console.log(error.response)
+            if (error.response.status === 401) return
+            serverErrorAlert(error);
+
+        }
+    }
 
     /* ###### PAGE DISPLAY FUNCTIONS ####### */
     const toggleSidebar = () => {
         dispatch({ type: TOGGLE_SIDEBAR });
     };
+
+    const changePage = (page) => {
+        dispatch({
+            type: CHANGE_PAGE,
+            payload: { page }
+        });
+    }
 
 
     return (
@@ -298,9 +388,16 @@ const AppProvider = ({ children }) => {
                 toggleSidebar,
                 logoutUser,
                 updateUser,
-                handlebetChange,
+                handleBetChange,
                 clearBetState,
-                createBet
+                createBet,
+                getBets,
+                setEditBet,
+                editBet,
+                deleteBet,
+                showStats,
+                clearFilters,
+                changePage
             }}
         >
         {children}

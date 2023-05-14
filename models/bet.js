@@ -20,7 +20,7 @@ const BetSchema = new mongoose.Schema(
         eventId: {
             type: String,
             default: "",
-            maxlength: 20
+            maxlength: 30
         },
         customEventId: {
             type: String,
