@@ -1,18 +1,24 @@
-import { Logo } from '../../components'
-import { Link } from 'react-router-dom'
-import Wrapper from '../../assets/wrappers/DashboardFormPage'
+import { useEffect } from 'react'
+import { useAppContext } from '../../context/appContext'
+import { StatsContainer, ChartsContainer, Loading } from '../../components'
 
 const Stats = () => {
-    return (
-      <Wrapper> 
-        <div className='Top Bar'> 
-            <h1>
-                Stats
-            </h1>
-            <Link to='/landing' className='btn btn-hero'>Landing Page</Link>
-        </div>
-      </Wrapper>
-    )
+  const { showStats, isLoading, monthlyBets } = useAppContext()
+
+  useEffect(() => {
+    showStats()
+  }, [])
+
+  if (isLoading) {
+    return <Loading center />
   }
+
+  return (
+    <h1>
+      <StatsContainer />
+      {monthlyBets.length > 0 && <ChartsContainer />}
+    </h1>
+  )
+}
   
   export default Stats

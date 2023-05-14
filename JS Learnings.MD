@@ -224,3 +224,77 @@ If either check fails, then a 401 response is returned and we can take an action
 
 ## Axios Interceptors
 Allow us to set common things to all request and responses made in axios. This includes a base url, a header to add to all requests and an action based on a given response (logout for unathenticated errors)
+
+## Building New Functionality
+When making new functionality for the app, you need to add it in both the front end and the back end. Here's the recommended order of operations to do this with:
+Backend:
+1. Create the model
+2. Create the routes
+3. Create/Update the functions in the controller
+4. Test errors and responses in Postman
+5. Add the first level variable from the response to the appContext state variables
+App Context:
+1. For each action that should happen on the page, add a begin and success action
+2. For each begin/success action, add a function in the reducer
+3. For each action, add a function in teh appContext and export it.
+Front End:
+1. Add a blank page for it on the front end
+2. Add a blank componenet for each element of the page
+3. 
+
+## CSS Styling Components
+With Wrappers, or any CSS, you can include variables in the styling code so that you can do things like make the color of something a variable. For example, like this. In the js for the component you'd do this:
+``` js
+import Wrapper from '../assets/wrappers/StatItem';
+
+const StatItem = ({ count, title, icon, color, bcg }) => {
+    return (
+        <Wrapper color={color} bcg={bcg}>
+            <header>
+                <span className="count">{count}</span>
+                <span className="icon">{icon}</span>
+            </header>
+            <h5 className='title'>{title}</h5>
+        </Wrapper>
+    )
+}
+```
+then in the Wrapper, it would look like this:
+```js
+import styled from 'styled-components'
+
+const Wrapper = styled.article`
+  padding: 2rem;
+  background: var(--white);
+  border-radius: var(--borderRadius);
+  border-bottom: 5px solid ${(props) => props.color};
+  .icon {
+    width: 70px;
+    height: 60px;
+    background: ${(props) => props.bcg};
+    svg {
+      font-size: 2rem;
+      color: ${(props) => props.color};
+    }
+  }
+`
+export default Wrapper
+```
+
+## Req.query
+The req.query is automatically populated by axios with the data that is sent as parameters in the url. So for example, this request will have this req.query data:
+```js
+let url = `/bets?betSource=${searchSource}&eventCategory=${searchCategory}&oddsMaker=${searchOddsMaker}&pick=${searchPick}&betStatus=${searchStatus}&sort=${sort}`
+const response = await authFetch.get(url);
+```
+```json
+{
+   "betSource": "all",
+   "eventCategory": "MLB",
+   "oddsMaker": "all",
+   "pick": "all",
+   "betStatus": "all",
+   "sort": "newest",
+   "search": "as"
+ }
+```

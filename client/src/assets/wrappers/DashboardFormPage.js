@@ -3,9 +3,8 @@ import styled from 'styled-components'
 const Wrapper = styled.section`
   border-radius: var(--borderRadius);
   width: 100%;
-  background: var(--white);
-  padding: 3rem 2rem 4rem;
-  box-shadow: var(--shadow-2);
+  background: var(--grey-50);
+  padding: 3rem 1rem 4rem;
   h3 {
     margin-top: 0;
   }
@@ -13,7 +12,7 @@ const Wrapper = styled.section`
     margin: 0;
     border-radius: 0;
     box-shadow: none;
-    padding: 0;
+    padding: 10;
     max-width: 100%;
     width: 100%;
   }
