@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.main`
-  background-color: var(--white);
+  // background-color: var(--white);
   nav{
     width: var(--fluid-width);
     max-width: 1125px;
