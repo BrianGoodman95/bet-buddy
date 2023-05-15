@@ -82,25 +82,12 @@ const reducer = (state, action) => {
         return {
             ...state,
             user: action.payload.user,
-            token: action.payload.token,
             userLocation: action.payload.location,
             jobLocation: action.payload.location,
             isLoading: false,
             showAlert: true,
             alertType: 'success',
             alertText: 'Success! Redirecting...'
-        }
-    }
-    if (action.type === REGISTER_USER_ERROR){
-        return {
-            ...state,
-            user: null,
-            token: null,
-            userLocation: '',
-            isLoading: false,
-            showAlert: true,
-            alertType: 'danger',
-            alertText: action.payload.msg
         }
     }
     if (action.type === LOGIN_USER_BEGIN){
@@ -113,7 +100,6 @@ const reducer = (state, action) => {
         return {
             ...state,
             user: action.payload.user,
-            token: action.payload.token,
             userLocation: action.payload.location,
             jobLocation: action.payload.location,
             isLoading: false,
@@ -126,7 +112,6 @@ const reducer = (state, action) => {
         return {
             ...initialState,
             user: null,
-            token: null,
             userLocation: '',
             jobLocation: '',
         }
@@ -141,7 +126,6 @@ const reducer = (state, action) => {
         return {
             ...state,
             user: action.payload.user,
-            token: action.payload.token,
             userLocation: action.payload.location,
             jobLocation: action.payload.location,
             isLoading: false,

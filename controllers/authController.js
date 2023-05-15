@@ -1,6 +1,7 @@
 import User from '../models/User.js'
 import {StatusCodes} from 'http-status-codes'
 import { BadRequestError, UnAthenticatedError } from "../errors/index.js"
+import attachCookie from '../utils/attachCookie.js'
 
 const register = async (req, res) => { //(req, res, next))
     // Define the request
@@ -18,6 +19,8 @@ const register = async (req, res) => { //(req, res, next))
     
     // Create a token to define the users session
     const token = user.createJWT()
+    // set the token as a cookie
+    attachCookie({ token, res });
     
     // Define what to send back in the response
     // Even though password isn't sent back by default via the "select:false" in the model,
@@ -29,7 +32,6 @@ const register = async (req, res) => { //(req, res, next))
         email:user.email,
         location:user.location,
     }, 
-    token,
     location: user.location,})
 }
 
@@ -58,7 +60,9 @@ const login = async (req, res) => {
     // set password to undefined so it doesn't show in the response!
     user.password = undefined
 
-    res.status(StatusCodes.OK).json({user, token, location: user.location,})
+    attachCookie({ token, res });
+
+    res.status(StatusCodes.OK).json({ user, location: user.location, })
 }
 
 const updateUser = async (req, res) => {
@@ -76,7 +80,10 @@ const updateUser = async (req, res) => {
     await user.save()
 
     const token = user.createJWT()
-    res.status(StatusCodes.OK).json({user, token, location: user.location,})
+
+    attachCookie({ token, res });
+
+    res.status(StatusCodes.OK).json({ user, location: user.location, })
 
 }
 

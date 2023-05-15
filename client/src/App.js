@@ -1,6 +1,6 @@
 import { Landing, Register, Error, ProtectedRoute, SkipSetup } from "./pages"
 import { Profile, Stats, AddBet, AllBets, SharedLayout } from "./pages/dashboard"
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
