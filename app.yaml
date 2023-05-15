@@ -3,11 +3,6 @@ runtime: nodejs18 # or another supported version
 
 instance_class: F1
 
-env_variables:
-  MONGO_URL: "mongodb+srv://bgoodman1995:WhPhandS4G@cluster0.ejxjnvr.mongodb.net/1-Datafy?retryWrites=true&w=majority"
-  JWT_SECRET: "Zr4u7x!A%D*G-KaNdRgUkXp2s5v8y/B?"
-  JWT_LIFETIME: "1d"
-
 automatic_scaling:
   max_instances: 1
 
