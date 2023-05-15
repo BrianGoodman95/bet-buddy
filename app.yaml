@@ -19,5 +19,5 @@ handlers:
   redirect_http_response_code: 301
   script: auto
 
-# includes:
-# - env_vars.yaml
+includes:
+- env_vars.yaml
