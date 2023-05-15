@@ -11,7 +11,6 @@ import {
     CLEAR_ALERT,
     REGISTER_USER_BEGIN,
     REGISTER_USER_SUCCESS,
-    REGISTER_USER_ERROR,
     LOGIN_USER_BEGIN,
     LOGIN_USER_SUCCESS,
     TOGGLE_SIDEBAR,
@@ -34,7 +33,7 @@ import {
     CHANGE_PAGE,
 } from "./actions"
 
-const token = localStorage.getItem('token')
+// const token = localStorage.getItem('token')
 const userLocation = localStorage.getItem('location')
 const user = localStorage.getItem('user')
 
@@ -44,7 +43,6 @@ export const initialState = {
     alertText: '',
     alertType: '',
     user: user ? JSON.parse(user) : null,
-    token: token || null,
     userLocation: userLocation || '',
     showSidebar: false,
     jobLocation: userLocation || '',
@@ -98,13 +96,13 @@ const AppProvider = ({ children }) => {
     /* ####### LOCAL STORAGE FUNCTIONS ####### */
     const addUserToLocalStorage = ({user, token, location}) => {
         localStorage.setItem('user', JSON.stringify(user))
-        localStorage.setItem('token', token)
+        // localStorage.setItem('token', token)
         localStorage.setItem('location', location)
     }
 
     const removeUserToLocalStorage = () => {
         localStorage.removeItem('user')
-        localStorage.removeItem('token')
+        // localStorage.removeItem('token')
         localStorage.removeItem('location')
     }
 
@@ -117,12 +115,12 @@ const AppProvider = ({ children }) => {
     });
 
     //Setup an axios 401 Unauthorized Interceptor for requests
-    authFetch.interceptors.request.use((config) => {
-        config.headers['Authorization'] = `Bearer ${state.token}`
-        return config
-    }, (error) => {
-        return Promise.reject(error)
-    })
+    // authFetch.interceptors.request.use((config) => {
+    //     config.headers['Authorization'] = `Bearer ${state.token}`
+    //     return config
+    // }, (error) => {
+    //     return Promise.reject(error)
+    // })
 
     //Setup an axios 401 Unauthorized Interceptor for responses
     authFetch.interceptors.response.use((response) => {
@@ -162,18 +160,18 @@ const AppProvider = ({ children }) => {
         try {
             const response = await axios.post('/api/v1/auth/register', currentUser)
             // console.log(response);
-            const {user, token, location} = response.data;
+            const { user, location } = response.data;
             redirectSucessAlert()
             await delay(2000);
             dispatch({
                 type: REGISTER_USER_SUCCESS,
                 payload: {
                     user,
-                    token,
                     location
                 },
             })
-            addUserToLocalStorage({user, token, location})
+            console.log(user)
+            addUserToLocalStorage({ user, location })
         // If the register fails, handle the error
         } catch (error){
             console.log(error)
@@ -191,18 +189,17 @@ const AppProvider = ({ children }) => {
         // Try Logging in the user!
         try {
             const response = await axios.post('/api/v1/auth/login', currentUser)
-            const {user, token, location} = response.data;
+            const { user, location } = response.data;
             redirectSucessAlert()
             await delay(2000);
             dispatch({
                 type: LOGIN_USER_SUCCESS,
                 payload: {
                     user,
-                    token,
                     location
                 },
             })
-            addUserToLocalStorage({user, token, location})
+            addUserToLocalStorage({ user, location })
         // If the register fails, handle the error
         } catch (error){
             console.log(error)
@@ -223,16 +220,15 @@ const AppProvider = ({ children }) => {
         dispatch({ type: UPDATE_USER_BEGIN });
         try {
             const response = await authFetch.patch('/auth/updateUser', currentUser);
-            const { user, token, location } = response.data;
+            const { user, location } = response.data;
             dispatch({
                 type: UPDATE_USER_SUCCESS,
                 payload: {
                     user,
-                    token,
                     location
                 },
             })
-            addUserToLocalStorage({ user, token, location })
+            addUserToLocalStorage({ user, location })
             await delay(2000);
             clearAlert()
             // If the register fails, handle the error

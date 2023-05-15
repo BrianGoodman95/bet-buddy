@@ -2,8 +2,11 @@ import { useAppContext } from '../context/appContext';
 import Wrapper from '../assets/wrappers/SearchContainer';
 import { FormRow, FormRowSelect, Alert } from '../components';
 import { useClearAlertEffect } from '../functions/useClearAlertEffect'
+import { useState, useMemo } from 'react';
 
 const SearchContainer = () => {
+    const [localSearch, setLocalSearch] = useState('');
+
     const {
         handleBetChange,
         clearFilters,
@@ -31,16 +34,17 @@ const SearchContainer = () => {
 
     useClearAlertEffect(showAlert, clearAlert, [searchSource, searchCategory, search, searchOddsMaker, searchPick])
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (isEditing) {
-            return
-        }
-        getBets()
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (isEditing) {
+    //         return
+    //     }
+    //     getBets()
+    // }
 
     const handleClear = (e) => {
         // e.preventDefault();
+        setLocalSearch('')
         clearFilters();
     }
 
@@ -48,8 +52,20 @@ const SearchContainer = () => {
         const name = e.target.name;
         const value = e.target.value;
         handleBetChange({ name, value });
-        // getBets();
     }
+
+    const debounce = (e) => {
+        console.log('debounce')
+        let timeoutId
+        return (e) => {
+            setLocalSearch(e.target.value)
+            clearTimeout(timeoutId)
+            timeoutId = setTimeout(() => {
+                handleSearch(e)
+            }, 1000)
+        }
+    }
+    const optimizedDebounce = useMemo(() => debounce(), [])
 
     return (
         <Wrapper>
@@ -62,8 +78,8 @@ const SearchContainer = () => {
                         type="text"
                         name="search"
                         labelText="Event Description"
-                        value={search}
-                        handleChange={handleSearch}
+                        value={localSearch}
+                        handleChange={optimizedDebounce}
                     />
                     {/* BET SOURCE */}
                     <FormRowSelect
