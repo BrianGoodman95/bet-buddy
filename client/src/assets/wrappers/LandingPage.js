@@ -1,25 +1,22 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.main`
-  // background-color: var(--white);
   nav{
-    width: var(--fluid-width);
-    max-width: 1125px;
+    // width: var(--fluid-width);
+    // max-width: 1125px;
     /* max-width: 570px; */
-    margin: 0 auto;
-    margin-top: 5rem;
     /* height: 300px; */
     // height: var(--nav-height);
     height: 175px;
     display: flex;
-    align-items: left;
-    // margin-left: 0rem;
+    margin-left: -3rem;
+    margin-bottom: 3rem;
   }
   .page{
     min-height: calc(90vh - var(--nav-height));
     display: grid;
     align-items: center;
-    margin-top: -3rem;
+    margin-top: 0rem;
 
   }
   h1{
@@ -41,6 +38,7 @@ const Wrapper = styled.main`
     }
     .landing-img{
       display: block;
+      margin-top: 3rem;
     }
   }
 `
