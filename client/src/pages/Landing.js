@@ -11,12 +11,12 @@ const Landing = () => {
     <>
       {!user ? (
         <Wrapper>
-          <nav>
-            <LogoGreyBcg />
-          </nav>
           <div className='container page'>
-            {/* info */}
+            {/* logo & info */}
             <div className='info'>
+              <nav>
+                <LogoGreyBcg />
+              </nav>
               <h1>
                 Your <span>Personal</span> Bookie
               </h1>

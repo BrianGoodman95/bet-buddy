@@ -1,0 +1,23 @@
+runtime: nodejs18 # or another supported version
+# service: Bet-Manager
+
+instance_class: F1
+
+env_variables:
+  MONGO_URL: "mongodb+srv://bgoodman1995:WhPhandS4G@cluster0.ejxjnvr.mongodb.net/1-Datafy?retryWrites=true&w=majority"
+  JWT_SECRET: "Zr4u7x!A%D*G-KaNdRgUkXp2s5v8y/B?"
+  JWT_LIFETIME: "1d"
+
+automatic_scaling:
+  max_instances: 1
+
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+- url: /.*
+  secure: always
+  redirect_http_response_code: 301
+  script: auto
+
+# includes:
+# - env_vars.yaml
