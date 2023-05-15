@@ -18,11 +18,11 @@ const Landing = () => {
             {/* info */}
             <div className='info'>
               <h1>
-                Data <span>Tracking</span> App
+                Your <span>Personal</span> Bookie
               </h1>
               <p>
-                Track your data with ease.
-                Datafy is a simple and easy to use data entry and visualization app.
+                Manage your bets with ease.
+                Bet Buddy is here to help you track and make the best bets by incorporating advanced analytics.
               </p>
               <Link to='/register' className='btn btn-hero'>Login/Register</Link>
             </div>
