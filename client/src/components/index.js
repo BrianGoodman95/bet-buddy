@@ -1,4 +1,5 @@
 import Logo from './Logo'
+import LogoGreyBcg from './LogoGreyBcg'
 import FormRow from './FormRow'
 import FormRowSelect from './FormRowwithSelect'
 import Alert from './Alerts'
@@ -13,4 +14,4 @@ import StatsContainer from './StatsContainer'
 import ChartsContainer from './ChartsContainer'
 import PageButtonContainer from './PageButtonContainer'
 
-export { Logo, FormRow, FormRowSelect, Alert, Navbar, SmallSidebar, BigSidebar, SearchContainer, AllBetsContainer, BetInfo, StatsContainer, ChartsContainer, Loading, PageButtonContainer }
+export { Logo, LogoGreyBcg, FormRow, FormRowSelect, Alert, Navbar, SmallSidebar, BigSidebar, SearchContainer, AllBetsContainer, BetInfo, StatsContainer, ChartsContainer, Loading, PageButtonContainer }

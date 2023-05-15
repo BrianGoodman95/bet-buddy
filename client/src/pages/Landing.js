@@ -1,6 +1,6 @@
 import main from '../assets/images/landing.svg'
 import Wrapper from '../assets/wrappers/LandingPage'
-import { Logo } from '../components' //because index.js is the default
+import { LogoGreyBcg } from '../components' //because index.js is the default
 import { Link, Navigate } from 'react-router-dom';
 import { React } from 'react';
 import { useAppContext } from '../context/appContext';
@@ -12,7 +12,7 @@ const Landing = () => {
       {!user ? (
         <Wrapper>
           <nav>
-            <Logo />
+            <LogoGreyBcg />
           </nav>
           <div className='container page'>
             {/* info */}
