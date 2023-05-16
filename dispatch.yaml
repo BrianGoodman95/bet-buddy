@@ -1,0 +1,6 @@
+dispatch:
+  - url: "*/auth/*"
+    service: "authentication"
+    
+  - url: "*/*"
+    service: default
