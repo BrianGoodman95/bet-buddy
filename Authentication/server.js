@@ -66,7 +66,7 @@ app.use(notFoundMiddleware)
 // any "thrown Errors" to this middleware
 app.use(errorHandleMiddleware)
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5002;
 
 const start = async () => {
     try {

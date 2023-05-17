@@ -1,0 +1,28 @@
+{
+  "name": "bet-buddy",
+  "version": "1.0.0",
+  "description": "#### Helping you Create and Track Your Bets",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build-webui": "cd Authentication && npm run build",
+    "build-auth": "cd Web-UI && npm run build",
+    "build": "npm install && npm run build-auth && npm run build-webui",
+    "start-webui": "cd Web-UI && node server.js",
+    "start-auth": "cd Authentication && node server.js",
+    "start": "concurrently --kill-others-on-fail \"npm run start-webui\" \"npm run start-auth\"",
+    "install-webui": "cd Web-UI && npm run install-all",
+    "install-auth": "cd Authentication && npm run install-all",
+    "setup": "npm install && npm run install-auth && npm run install-webui",
+    "dev-start-webui": "cd Web-UI && npm run dev-start",
+    "dev-start-auth": "cd Authentication && npm run dev-start",
+    "dev-start": "concurrently --kill-others-on-fail \"npm run dev-start-webui\" \"npm run dev-start-auth\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.21"
+  }
+}

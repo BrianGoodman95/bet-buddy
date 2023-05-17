@@ -1,15 +1,15 @@
 {
-  "name": "bet-buddy",
+  "name": "bet-buddy-webui",
   "version": "1.0.0",
   "description": "#### Helping you Create and Track Your Bets",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "install-client": "cd client && npm install",
+    "install-all": "npm run install-client && npm install",
     "build-client": "cd client && npm run build",
     "build": "npm run install-client && npm run build-client && npm install",
     "start": "node server.js",
-    "dev-build": "npm run install-client && npm install",
     "dev-start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "server": "nodemon server --ignore client",
     "client": "npm start --prefix client"
