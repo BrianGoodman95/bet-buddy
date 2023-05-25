@@ -6,11 +6,12 @@ import Wrapper from "../assets/wrappers/AllBetsContainer";
 import PageButtonContainer from "./PageButtonContainer";
 
 const AllBetsContainer = () => {
-    const { search, searchSource, searchCategory, searchOddsMaker, searchPick, searchStatus, sort, getBets, bets, isLoading, page, numOfPages, totalBets } = useAppContext();
+    const { searchDescription, searchSource, searchCategory, searchOddsMaker, searchPick, searchStatus, sort, getBets, bets, isLoading, page, numOfPages, totalBets } = useAppContext();
 
     useEffect(() => {
+        console.log([page, searchDescription, searchSource, searchCategory, searchOddsMaker, searchPick, searchStatus, sort])
         getBets();
-    }, [page, search, searchSource, searchCategory, searchOddsMaker, searchPick, searchStatus, sort]);
+    }, [page, searchDescription, searchSource, searchCategory, searchOddsMaker, searchPick, searchStatus, sort]);
 
     if (isLoading) {
         return <Loading center />

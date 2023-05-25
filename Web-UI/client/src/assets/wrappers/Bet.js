@@ -42,24 +42,24 @@ const Wrapper = styled.article`
     }
   }
   .Unsettled {
-    background: #fcefc7;
+    background: #FAFCD6;
     color: #e9b949;
   }
   .Live {
-    background: #e0e8f9;
-    color: #647acb;
+    color: #7B5D9F;
+    background: #E8D6FC;
   }
   .Won {
-    color: #d66a6a;
-    background: #ffeeee;
+    color: var(--green-dark);
+    background: var(--green-light);
   }
   .Lost {
-    color: #d63b4b;
-    background: #ffeeee;
+    color: var(--red-dark);
+    background: var(--red-light);
   }
   .Push {
-    color: #d66c2a;
-    background: #ffeeee;
+    color: #4E6A75;
+    background: #D6F2FC;
   }
   .content {
     padding: 1rem 1.5rem;

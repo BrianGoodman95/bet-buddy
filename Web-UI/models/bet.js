@@ -5,7 +5,7 @@ const BetSchema = new mongoose.Schema(
         betSource: {
             type: String,
             enum: ["Registered", "Custom"],
-            default: "Registered"
+            default: "Custom"
         },
         eventCategory: {
             type: String,
@@ -52,7 +52,7 @@ const BetSchema = new mongoose.Schema(
             enum: ["Won", "Lost", "Push", "Live", "Unsettled"],
             default: "Unsettled"
         },
-        jobLocation: {
+        betLocation: {
             type: String,
             default: 'my city',
             required: true

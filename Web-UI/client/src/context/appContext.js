@@ -45,32 +45,26 @@ export const initialState = {
     user: user ? JSON.parse(user) : null,
     userLocation: userLocation || '',
     showSidebar: false,
-    jobLocation: userLocation || '',
+    betLocation: userLocation || '',
     isEditing: false,
     editBetId: '',
-    betSource: "Registered",
-    betSourceOptions: ['Registered', 'Custom'],
+    filterOptions: {},
+    betSource: "Custom",
     eventCategory: '',
-    eventCategoryOptions: ['MLB', 'NFL', 'NBA'],
     eventDescription: '',
-    eventDescriptionOptions: ['TOR & NYY', 'PHI @ DAL', 'LAL @ MIL'],
     oddsMaker: '',
-    oddsMakerOptions: ['FanDuel', 'Bet365', 'DraftKings'],
     pick: '',
-    pickOptions: ['TOR', 'NYY', 'PHI', 'DAL', 'LAL', 'MIL'],
     spread: '',
-    spreadOptions: ['+180', '-250'],
     wager: '',
     betStatus: 'Unsettled',
-    betStatusOptions: ["Won", "Lost", "Push", "Live", "Unsettled"], //I want to combine Live and Unsettled to Open
+    betStatusOptions: ["Unsettled", "Won", "Lost", "Push", "Live"], //I want to combine Live and Unsettled to Open
     bets: [],
     totalBets: 0,
     page: 1,
     numOfPages: 1,
     stats: {},
     monthlyBets: [],
-    search: '',
-    searchType: '',
+    searchDescription: '',
     searchSource: 'all',
     searchCategory: 'all',
     searchOddsMaker: 'all',
@@ -308,19 +302,20 @@ const AppProvider = ({ children }) => {
     }
 
     const getBets = async () => {
-        const { search, searchSource, searchCategory, searchOddsMaker, searchPick, searchStatus, sort, page } = state
+        const { searchDescription, searchSource, searchCategory, searchOddsMaker, searchPick, searchStatus, sort, page } = state
         let url = `/bets?page=${page}&betSource=${searchSource}&eventCategory=${searchCategory}&oddsMaker=${searchOddsMaker}&pick=${searchPick}&betStatus=${searchStatus}&sort=${sort}`
-        if (search) {
-            url = url + `&search=${search}`
+        if (searchDescription) {
+            url = url + `&eventDescription=${searchDescription}`
         }
         dispatch({ type: GET_BETS_BEGIN });
         try {
             const response = await authFetch.get(url); //Don't need to put currnetUser because we add the userId to the req.user in the auth.js middleware
-            const { bets, totalBets, numOfPages } = response.data;
+            const { bets, filterOptions, totalBets, numOfPages } = response.data;
             dispatch({
                 type: GET_BETS_SUCCESS,
                 payload: {
                     bets,
+                    filterOptions,
                     totalBets,
                     numOfPages,
                 },
@@ -337,8 +332,8 @@ const AppProvider = ({ children }) => {
     /* ###### SEARCH FUNCTIONALITY ####### */
     const clearFilters = async () => {
         dispatch({ type: CLEAR_FILTER_STATE });
-        await delay(1000);
-        getBets();
+        // await delay(3000);
+        // getBets();
     }
 
     /* STATS PAGE STUFF */

@@ -6,7 +6,7 @@ import { React } from 'react';
 import { useAppContext } from '../context/appContext';
 
 const Landing = () => {
-  const { user } = useAppContext()
+  const { user, isLoading, loginUser } = useAppContext()
   return (
     <>
       {!user ? (
@@ -22,9 +22,21 @@ const Landing = () => {
               </h1>
               <p>
                 Manage your bets with ease.
-                Bet Buddy is here to help you track and make the best bets by incorporating advanced analytics.
+                Bet Buddy is here to help you track and make all your bets and incorporates advanced analytics (eventually) to help you make the best ones.
               </p>
-              <Link to='/register' className='btn btn-hero'>Login/Register</Link>
+              <Link to='/register' className='btn btn-hero'>Login / Register</Link>
+              <div>
+                <button
+                  type='button'
+                  className='btn btn-hipster btn-hero'
+                  disabled={isLoading}
+                  onClick={() => {
+                    loginUser({ name: 'test user', email: 'testUser@test.com', password: 'secret' });
+                  }}
+                >
+                  {isLoading ? 'loading...' : 'demo the app'}
+                </button>
+              </div>
             </div>
             <img src={main} alt='data search' className='img landing-img' />
           </div>

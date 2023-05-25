@@ -33,14 +33,14 @@ const deleteBet = async (req, res) => {
 
 const getAllBets = async (req, res) => {
 
-    const { search, sort, betSource, eventCategory, oddsMaker, pick, betStatus } = req.query
+    const { eventDescription, sort, betSource, eventCategory, oddsMaker, pick, betStatus } = req.query
     //Add stuff based on conditions
     const queryObject = {
         createdBy: req.user.userId,
     }
 
-    if (search) {
-        queryObject.eventDescription = { $regex: search, $options: 'i' }
+    if (eventDescription) {
+        queryObject.eventDescription = { $regex: eventDescription, $options: 'i' }
     }
     if (betSource) {
         if (betSource !== 'all') {
@@ -67,33 +67,62 @@ const getAllBets = async (req, res) => {
             queryObject.betStatus = betStatus
         }
     }
-    // No Await
-    let result = Bet.find(queryObject)
-    // chain sort conditions
+
+    /* ###### SINGLE PAGE BETS QUERY ###### */
+    // Define the query and chain sort conditions for the page bets
+    let pageResults = Bet.find(queryObject)
     if (sort == 'newest') {
-        result = result.sort('-createdAt')
+        pageResults = pageResults.sort('-createdAt')
     }
     if (sort == 'oldest') {
-        result = result.sort('createdAt')
+        pageResults = pageResults.sort('createdAt')
     }
     if (sort == 'a-z') {
-        result = result.sort('eventDescription')
+        pageResults = pageResults.sort('eventDescription')
     }
     if (sort == 'z-a') {
-        result = result.sort('-eventDescription')
+        pageResults = pageResults.sort('-eventDescription')
     }
-
+    // Do the math to figure out how many bets to show based on page #
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10; // 10 per page
     const skip = (page - 1) * limit; // skip N per page for page N > 1
-
-    result = result.skip(skip).limit(limit);
-
-    const bets = await result
+    pageResults = pageResults.skip(skip).limit(limit);
+    // Get the bets for that page, the count and the number of pages
+    const pageBets = await pageResults
     const totalBets = await Bet.countDocuments(queryObject)
     const numOfPages = Math.ceil(totalBets / limit)
+
+
+    /* ###### ALL BETS QUERY ###### */
+    // define query and sort condition for all bets
+    let allResults = Bet.find(queryObject)
+    allResults = allResults.sort('createdAt')
+
+    // Get all bets and get the lists of each column to use for filters
+    const allBets = await allResults
+    const betSources = [...new Set(allBets.map(bet => bet.betSource))];
+    const eventCategories = [...new Set(allBets.map(bet => bet.eventCategory))];
+    const oddsMakers = [...new Set(allBets.map(bet => bet.oddsMaker))];
+    const spreads = [...new Set(allBets.map(bet => bet.spread))];
+    const picks = [...new Set(allBets.map(bet => bet.pick))];
+    const betStatuses = [...new Set(allBets.map(bet => bet.betStatus))];
+    
+    
     // Append the response with extra information inlcuding the query results (bets), the number of bets and num of pages
-    res.status(StatusCodes.OK).json({ bets, totalBets: totalBets, numOfPages: numOfPages })
+    res.status(StatusCodes.OK).json({ 
+        bets: pageBets,
+        filterOptions: {
+            betSourceOptions: betSources,
+            eventCategoryOptions: eventCategories, 
+            oddsMakerOptions: oddsMakers,
+            spreadOptions: spreads,
+            pickOptions: picks,
+            betStatusOptions: betStatuses
+        },
+        totalBets: totalBets, 
+        numOfPages: numOfPages 
+    })
 }
 
 const updateBet = async (req, res) => {

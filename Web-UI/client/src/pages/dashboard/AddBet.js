@@ -29,12 +29,12 @@ const AddBet = () => {
     pick,
     pickOptions,
     wager,
-    jobLocation,
+    betLocation,
     betStatus,
     betStatusOptions,
   } = useAppContext();
 
-  useClearAlertEffect(showAlert, clearAlert, [eventCategory, eventDescription, oddsMaker, spread, pick, wager, jobLocation])
+  useClearAlertEffect(showAlert, clearAlert, [eventCategory, eventDescription, oddsMaker, spread, pick, wager, betLocation])
   // Here we set an effect to naviagte to a page and clear bet state when the state variable isEditing changes from true to false (which is the case when the edit bet was successful)
   const navigate = useNavigate();
   // useEffect(() => {
@@ -58,7 +58,7 @@ const AddBet = () => {
         spread,
         pick,
         wager,
-        jobLocation,
+        betLocation,
         betStatus
       });
       setTimeout(() => {
@@ -75,7 +75,7 @@ const AddBet = () => {
       spread,
       pick,
       wager,
-      jobLocation,
+      betLocation,
       betStatus
     })
     console.log('created bet!')
@@ -99,7 +99,7 @@ const AddBet = () => {
         <h3>{isEditing ? 'Edit Bet' : 'Add Bet'}</h3>
         {showAlert && <Alert />}
         <div className="form-center">
-          {/* BET SOURCE */}
+          {/* BET SOURCE
           <FormRowSelect
             type="text"
             name="betSource"
@@ -107,7 +107,7 @@ const AddBet = () => {
             value={betSource}
             handleChange={handleBetInput}
             options={betSourceOptions}
-          />
+          /> */}
           {/* EVENT CATEGAORY */}
           {betSource === "Registered" ? (
             <FormRowSelect

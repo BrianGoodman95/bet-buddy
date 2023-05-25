@@ -34,9 +34,9 @@ app.use(mongoSanitize());
 app.use(cookieParser());
 
 // setup the logging tool
-if (process.env.NODE_ENV != 'production') {
-    app.use(morgan('dev'))
-}
+// if (process.env.NODE_ENV != 'production') {
+//     app.use(morgan('dev'))
+// }
 
 // makes json data available in the controllers. Built in express middleware
 app.use(express.json())
