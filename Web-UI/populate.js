@@ -8,7 +8,10 @@ import Bet from './models/bet.js'
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URL)
-        // await Bet.deleteMany()
+        const queryObject = {
+            createdBy: "64604a40749e6dad3c4962d1",
+        }
+        await Bet.deleteMany(queryObject)
         const jsonProducts = JSON.parse(await readFile(new URL('./mock-data.json', import.meta.url)))
         await Bet.create(jsonProducts)
         console.log('success!')

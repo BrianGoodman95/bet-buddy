@@ -12,7 +12,7 @@ const FormRowSelect = ({ type, name, value, handleChange, labelText, options }) 
                 className="form-select"
             // defaultValue='' // add defaultValue prop
             >
-                <option value=""> </option>
+                {/* <option value=""> </option> */}
                 {options.map((itemValue, index) => {
                     return (
                         <option key={index} value={itemValue}>

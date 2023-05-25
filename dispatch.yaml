@@ -2,5 +2,5 @@ dispatch:
   - url: "*/auth/*"
     service: "authentication"
     
-  - url: "*/*"
+  - url: "*/"
     service: default

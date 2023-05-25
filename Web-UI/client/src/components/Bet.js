@@ -37,12 +37,12 @@ const Bet = ({
             <div className='content'>
                 <div className='content'>
                     <div className='content-center'>
-                        <BetInfo icon={<FaBalanceScale />} text={spread} />
-                        <BetInfo icon={<FiTarget />} text={pick} />
-                        <BetInfo icon={<FaBookOpen />} text={oddsMaker} />
-                        <BetInfo icon={<FaMoneyBill />} text={wager} />
-                        <BetInfo icon={<FaCalendarAlt />} text={date} />
                         <div className={`status ${betStatus}`}>{betStatus}</div>
+                        <BetInfo icon={<FaCalendarAlt />} text={date} />
+                        <BetInfo icon={<FiTarget />} text={pick} />
+                        <BetInfo icon={<FaBalanceScale />} text={spread} />
+                        <BetInfo icon={<FaBookOpen />} text={oddsMaker} />
+                        <BetInfo icon={<FaMoneyBill />} text={`$${wager}`} />
                     </div>
                 </div>
                 <footer>

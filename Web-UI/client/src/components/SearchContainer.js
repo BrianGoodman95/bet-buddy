@@ -5,57 +5,46 @@ import { useClearAlertEffect } from '../functions/useClearAlertEffect'
 import { useState, useMemo } from 'react';
 
 const SearchContainer = () => {
-    const [localSearch, setLocalSearch] = useState('');
 
     const {
         handleBetChange,
         clearFilters,
-        getBets,
         showAlert,
         clearAlert,
         isLoading,
         isEditing,
+        filterOptions,
         searchSource,
-        betSourceOptions,
         searchCategory,
-        eventCategoryOptions,
         searchOddsMaker,
-        oddsMakerOptions,
         searchPick,
-        pickOptions,
-        spread,
-        wager,
+        searchSpread,
+        searchWager,
         searchStatus,
-        betStatusOptions,
-        search,
+        searchDescription,
         sort,
         sortOptions,
     } = useAppContext();
 
-    useClearAlertEffect(showAlert, clearAlert, [searchSource, searchCategory, search, searchOddsMaker, searchPick])
+    const [localSearch, setLocalSearch] = useState(searchDescription);
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (isEditing) {
-    //         return
-    //     }
-    //     getBets()
-    // }
+    useClearAlertEffect(showAlert, clearAlert, [searchDescription, searchSource, searchCategory, searchOddsMaker, searchPick])
 
     const handleClear = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         setLocalSearch('')
         clearFilters();
     }
 
     const handleSearch = (e) => {
+        // e.preventDefault();
+        console.log('searching')
         const name = e.target.name;
         const value = e.target.value;
         handleBetChange({ name, value });
     }
 
     const debounce = (e) => {
-        console.log('debounce')
         let timeoutId
         return (e) => {
             setLocalSearch(e.target.value)
@@ -69,19 +58,19 @@ const SearchContainer = () => {
 
     return (
         <Wrapper>
-            <form className="form">
+            <form className='form' onSubmit={(e) => e.preventDefault()}>
                 <h3>Filter Bets</h3>
                 {showAlert && <Alert />}
                 <div className="form-center">
                     {/* EVENT DESCRIPTION */}
                     <FormRow
                         type="text"
-                        name="search"
+                        name="searchDescription"
                         labelText="Event Description"
                         value={localSearch}
                         handleChange={optimizedDebounce}
                     />
-                    {/* BET SOURCE */}
+                    {/* BET SOURCE
                     <FormRowSelect
                         type="text"
                         name="searchSource"
@@ -89,7 +78,7 @@ const SearchContainer = () => {
                         value={searchSource}
                         handleChange={handleSearch}
                         options={['all', ...betSourceOptions]}
-                    />
+                    /> */}
                     {/* EVENT CATEGAORY */}
                     <FormRowSelect
                         type="text"
@@ -97,7 +86,7 @@ const SearchContainer = () => {
                         labelText="Event Category"
                         value={searchCategory}
                         handleChange={handleSearch}
-                        options={['all', ...eventCategoryOptions]}
+                        options={filterOptions.eventCategoryOptions ? ['all', ...filterOptions.eventCategoryOptions] : ['all']}
                     />
                     {/* ODDS MAKER */}
                     <FormRowSelect
@@ -106,7 +95,7 @@ const SearchContainer = () => {
                         labelText="Odds Maker"
                         value={searchOddsMaker}
                         handleChange={handleSearch}
-                        options={['all', ...oddsMakerOptions]}
+                        options={filterOptions.oddsMakerOptions ? ['all', ...filterOptions.oddsMakerOptions] : ['all']}
                     />
                     {/* PICK */}
                     <FormRowSelect
@@ -115,7 +104,7 @@ const SearchContainer = () => {
                         labelText="Pick"
                         value={searchPick}
                         handleChange={handleSearch}
-                        options={['all', ...pickOptions]}
+                        options={filterOptions.pickOptions ? ['all', ...filterOptions.pickOptions] : ['all']}
                     />
                     {/* BET STATUS */}
                     <FormRowSelect
@@ -124,7 +113,7 @@ const SearchContainer = () => {
                         labelText="Bet Status"
                         value={searchStatus}
                         handleChange={handleSearch}
-                        options={['all', ...betStatusOptions]}
+                        options={filterOptions.betStatusOptions ? ['all', ...filterOptions.betStatusOptions] : ['all']}
                     />
                     {/* Sorting */}
                     <FormRowSelect
@@ -134,6 +123,15 @@ const SearchContainer = () => {
                         handleChange={handleSearch}
                         options={sortOptions}
                     />
+                    {/* Hiddne Submit button */}
+                    <button
+                        type="submit"
+                        style={{ display: 'none' }}
+                        tabIndex="-1"
+                        onClick={handleSearch}
+                    >
+                        Submit
+                    </button>
                     {/* clear button */}
                     <div className='btn-container'>
                         <button
