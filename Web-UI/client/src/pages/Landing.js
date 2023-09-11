@@ -22,7 +22,7 @@ const Landing = () => {
               </h1>
               <p>
                 Manage your bets with ease.
-                Bet Buddy is here to help you track and make all your bets and incorporates advanced analytics (eventually) to help you make the best ones.
+                Bet Buddy is here to help you track all your bets! By consolidating your bets together and providing advanced analytics, BetBuddy will help you make smarter bets and better returns!
               </p>
               <Link to='/register' className='btn btn-hero'>Login / Register</Link>
               <div>

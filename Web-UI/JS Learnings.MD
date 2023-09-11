@@ -284,14 +284,14 @@ export default Wrapper
 ## Req.query
 The req.query is automatically populated by axios with the data that is sent as parameters in the url. So for example, this request will have this req.query data:
 ```js
-let url = `/bets?betSource=${searchSource}&eventCategory=${searchCategory}&oddsMaker=${searchOddsMaker}&pick=${searchPick}&betStatus=${searchStatus}&sort=${sort}`
+let url = `/bets?betSource=${searchSource}&eventCategory=${searchCategory}&sportsBook=${searchSportsBook}&pick=${searchPick}&betStatus=${searchStatus}&sort=${sort}`
 const response = await authFetch.get(url);
 ```
 ```json
 {
    "betSource": "all",
    "eventCategory": "MLB",
-   "oddsMaker": "all",
+   "sportsBook": "all",
    "pick": "all",
    "betStatus": "all",
    "sort": "newest",

@@ -10,7 +10,7 @@ const auth = async (req, res, next) => {
     // const token = authHeader.split(' ')[1]
 
     const cookie = req.headers.cookie
-    if (!cookie || !cookie.startsWith('token')) {
+    if (!cookie){ // || !cookie.startsWith('token')) {
         throw new UnAthenticatedError('Authentication Invalid')
     }
     const token = cookie.split('=')[1]

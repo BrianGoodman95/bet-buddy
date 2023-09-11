@@ -12,8 +12,8 @@ const Bet = ({
     betSource,
     eventCategory,
     eventDescription,
-    oddsMaker,
-    spread,
+    sportsBook,
+    odds,
     pick,
     wager,
     gameLocation,
@@ -40,8 +40,8 @@ const Bet = ({
                         <div className={`status ${betStatus}`}>{betStatus}</div>
                         <BetInfo icon={<FaCalendarAlt />} text={date} />
                         <BetInfo icon={<FiTarget />} text={pick} />
-                        <BetInfo icon={<FaBalanceScale />} text={spread} />
-                        <BetInfo icon={<FaBookOpen />} text={oddsMaker} />
+                        <BetInfo icon={<FaBalanceScale />} text={odds} />
+                        <BetInfo icon={<FaBookOpen />} text={sportsBook} />
                         <BetInfo icon={<FaMoneyBill />} text={`$${wager}`} />
                     </div>
                 </div>

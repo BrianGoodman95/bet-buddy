@@ -8,8 +8,8 @@ import moment from 'moment';
 // import Math from 'math';
 
 const createBet = async (req, res) => {
-    const { eventCategory, eventDescription, oddsMaker, spread, pick, wager } = req.body
-    if (!eventCategory || !eventDescription || !oddsMaker || !spread || !pick || !wager) {
+    const { eventCategory, eventDescription, sportsBook, odds, pick, wager } = req.body
+    if (!eventCategory || !eventDescription || !sportsBook || !odds || !pick || !wager) {
         throw new BadRequestError('Please Provide All Values')
     }
     req.body.createdBy = req.user.userId
@@ -33,7 +33,7 @@ const deleteBet = async (req, res) => {
 
 const getAllBets = async (req, res) => {
 
-    const { eventDescription, sort, betSource, eventCategory, oddsMaker, pick, betStatus } = req.query
+    const { eventDescription, sort, betSource, eventCategory, sportsBook, pick, betStatus } = req.query
     //Add stuff based on conditions
     const queryObject = {
         createdBy: req.user.userId,
@@ -52,9 +52,9 @@ const getAllBets = async (req, res) => {
             queryObject.eventCategory = eventCategory
         }
     }
-    if (oddsMaker) {
-        if (oddsMaker !== 'all') {
-            queryObject.oddsMaker = oddsMaker
+    if (sportsBook) {
+        if (sportsBook !== 'all') {
+            queryObject.sportsBook = sportsBook
         }
     }
     if (pick) {
@@ -103,8 +103,8 @@ const getAllBets = async (req, res) => {
     const allBets = await allResults
     const betSources = [...new Set(allBets.map(bet => bet.betSource))];
     const eventCategories = [...new Set(allBets.map(bet => bet.eventCategory))];
-    const oddsMakers = [...new Set(allBets.map(bet => bet.oddsMaker))];
-    const spreads = [...new Set(allBets.map(bet => bet.spread))];
+    const sportsBooks = [...new Set(allBets.map(bet => bet.sportsBook))];
+    const oddss = [...new Set(allBets.map(bet => bet.odds))];
     const picks = [...new Set(allBets.map(bet => bet.pick))];
     const betStatuses = [...new Set(allBets.map(bet => bet.betStatus))];
     
@@ -115,8 +115,8 @@ const getAllBets = async (req, res) => {
         filterOptions: {
             betSourceOptions: betSources,
             eventCategoryOptions: eventCategories, 
-            oddsMakerOptions: oddsMakers,
-            spreadOptions: spreads,
+            sportsBookOptions: sportsBooks,
+            oddsOptions: oddss,
             pickOptions: picks,
             betStatusOptions: betStatuses
         },
@@ -127,8 +127,8 @@ const getAllBets = async (req, res) => {
 
 const updateBet = async (req, res) => {
     const { id: betId } = req.params
-    const { eventCategory, eventDescription, oddsMaker, spread, pick, wager } = req.body
-    if (!eventCategory || !eventDescription || !oddsMaker || !spread || !pick || !wager) {
+    const { eventCategory, eventDescription, sportsBook, odds, pick, wager } = req.body
+    if (!eventCategory || !eventDescription || !sportsBook || !odds || !pick || !wager) {
         throw new BadRequestError('Please Provide All Values')
     }
 

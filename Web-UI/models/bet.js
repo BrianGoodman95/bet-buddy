@@ -15,7 +15,7 @@ const BetSchema = new mongoose.Schema(
         eventDescription: {
             type: String,
             required: [true, "Please provide or select a description for the event the bet is for"],
-            maxlength: 100
+            maxlength: 200
         },
         eventId: {
             type: String,
@@ -27,14 +27,14 @@ const BetSchema = new mongoose.Schema(
             default: Schema.Types.ObjectId,
             maxlength: 50
         },
-        oddsMaker: {
+        sportsBook: {
             type: String,
-            required: [true, "Please provide or select a bookie"],
+            required: [true, "Please provide or select a sports book"],
             maxlength: 50
         },
-        spread: {
+        odds: {
             type: Number,
-            required: [true, "Please provide or select a spread"],
+            required: [true, "Please provide or select odds"],
             maxlength: 10
         },
         pick: {

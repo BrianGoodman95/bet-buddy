@@ -52,9 +52,9 @@ export const initialState = {
     betSource: "Custom",
     eventCategory: '',
     eventDescription: '',
-    oddsMaker: '',
+    sportsBook: '',
     pick: '',
-    spread: '',
+    odds: '',
     wager: '',
     betStatus: 'Unsettled',
     betStatusOptions: ["Unsettled", "Won", "Lost", "Push", "Live"], //I want to combine Live and Unsettled to Open
@@ -67,7 +67,7 @@ export const initialState = {
     searchDescription: '',
     searchSource: 'all',
     searchCategory: 'all',
-    searchOddsMaker: 'all',
+    searchSportsBook: 'all',
     searchPick: 'all',
     searchStatus: 'all',
     sort: 'newest',
@@ -170,7 +170,7 @@ const AppProvider = ({ children }) => {
         } catch (error){
             console.log(error)
             serverErrorAlert(error);
-            // dispatch({
+            // dispatch({ 
             //     type: REGISTER_USER_ERROR,
             //     payload: {msg: error.response.data.msg},
             // })
@@ -302,8 +302,8 @@ const AppProvider = ({ children }) => {
     }
 
     const getBets = async () => {
-        const { searchDescription, searchSource, searchCategory, searchOddsMaker, searchPick, searchStatus, sort, page } = state
-        let url = `/bets?page=${page}&betSource=${searchSource}&eventCategory=${searchCategory}&oddsMaker=${searchOddsMaker}&pick=${searchPick}&betStatus=${searchStatus}&sort=${sort}`
+        const { searchDescription, searchSource, searchCategory, searchSportsBook, searchPick, searchStatus, sort, page } = state
+        let url = `/bets?page=${page}&betSource=${searchSource}&eventCategory=${searchCategory}&sportsBook=${searchSportsBook}&pick=${searchPick}&betStatus=${searchStatus}&sort=${sort}`
         if (searchDescription) {
             url = url + `&eventDescription=${searchDescription}`
         }
