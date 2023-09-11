@@ -150,9 +150,9 @@ const reducer = (state, action) => {
             betSource: "Custom",
             eventCategory: '',
             eventDescription: '',
-            oddsMaker: '',
+            sportsBook: '',
             pick: '',
-            spread: '',
+            odds: '',
             wager: '',
             betStatus: 'Unsettled',
             betStatusOptions: ["Unsettled", "Won", "Lost", "Push", "Live"],
@@ -167,7 +167,7 @@ const reducer = (state, action) => {
             searchDescription: '',
             searchSource: 'all',
             searchCategory: 'all',
-            searchOddsMaker: 'all',
+            searchSportsBook: 'all',
             searchPick: 'all',
             searchStatus: 'all',
             sort: 'newest',
@@ -208,7 +208,7 @@ const reducer = (state, action) => {
     }
     if (action.type === SET_EDIT_BET) {
         const bet = state.bets.find(bet => bet._id === action.payload.id)
-        const { _id, betSource, eventCategory, eventDescription, oddsMaker, pick, spread, wager, betStatus } = bet
+        const { _id, betSource, eventCategory, eventDescription, sportsBook, pick, odds, wager, betStatus } = bet
         return {
             ...state,
             isEditing: true,
@@ -216,9 +216,9 @@ const reducer = (state, action) => {
             betSource: betSource,
             eventCategory: eventCategory,
             eventDescription: eventDescription,
-            oddsMaker: oddsMaker,
+            sportsBook: sportsBook,
             pick: pick,
-            spread: spread,
+            odds: odds,
             wager: wager,
             betStatus: betStatus,
         }

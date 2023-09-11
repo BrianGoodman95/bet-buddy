@@ -16,9 +16,9 @@ const SearchContainer = () => {
         filterOptions,
         searchSource,
         searchCategory,
-        searchOddsMaker,
+        searchSportsBook,
         searchPick,
-        searchSpread,
+        searchOdds,
         searchWager,
         searchStatus,
         searchDescription,
@@ -28,7 +28,7 @@ const SearchContainer = () => {
 
     const [localSearch, setLocalSearch] = useState(searchDescription);
 
-    useClearAlertEffect(showAlert, clearAlert, [searchDescription, searchSource, searchCategory, searchOddsMaker, searchPick])
+    useClearAlertEffect(showAlert, clearAlert, [searchDescription, searchSource, searchCategory, searchSportsBook, searchPick])
 
     const handleClear = (e) => {
         e.preventDefault();
@@ -88,14 +88,14 @@ const SearchContainer = () => {
                         handleChange={handleSearch}
                         options={filterOptions.eventCategoryOptions ? ['all', ...filterOptions.eventCategoryOptions] : ['all']}
                     />
-                    {/* ODDS MAKER */}
+                    {/* SPORTS BOOK */}
                     <FormRowSelect
                         type="text"
-                        name="searchOddsMaker"
-                        labelText="Odds Maker"
-                        value={searchOddsMaker}
+                        name="searchSportsBook"
+                        labelText="Sports Book"
+                        value={searchSportsBook}
                         handleChange={handleSearch}
-                        options={filterOptions.oddsMakerOptions ? ['all', ...filterOptions.oddsMakerOptions] : ['all']}
+                        options={filterOptions.sportsBookOptions ? ['all', ...filterOptions.sportsBookOptions] : ['all']}
                     />
                     {/* PICK */}
                     <FormRowSelect

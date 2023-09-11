@@ -35,7 +35,6 @@ const register = async (req, res) => { //(req, res, next))
     location: user.location,})
 }
 
-
 const login = async (req, res) => {
     const {email, password} = req.body
 

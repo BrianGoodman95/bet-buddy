@@ -22,10 +22,10 @@ const AddBet = () => {
     eventCategoryOptions,
     eventDescription,
     eventDescriptionOptions,
-    oddsMaker,
-    oddsMakerOptions,
-    spread,
-    spreadOptions,
+    sportsBook,
+    sportsBookOptions,
+    odds,
+    oddsOptions,
     pick,
     pickOptions,
     wager,
@@ -34,7 +34,7 @@ const AddBet = () => {
     betStatusOptions,
   } = useAppContext();
 
-  useClearAlertEffect(showAlert, clearAlert, [eventCategory, eventDescription, oddsMaker, spread, pick, wager, betLocation])
+  useClearAlertEffect(showAlert, clearAlert, [eventCategory, eventDescription, sportsBook, odds, pick, wager, betLocation])
   // Here we set an effect to naviagte to a page and clear bet state when the state variable isEditing changes from true to false (which is the case when the edit bet was successful)
   const navigate = useNavigate();
   // useEffect(() => {
@@ -54,8 +54,8 @@ const AddBet = () => {
         betSource,
         eventCategory,
         eventDescription,
-        oddsMaker,
-        spread,
+        sportsBook,
+        odds,
         pick,
         wager,
         betLocation,
@@ -71,8 +71,8 @@ const AddBet = () => {
       betSource,
       eventCategory,
       eventDescription,
-      oddsMaker,
-      spread,
+      sportsBook,
+      odds,
       pick,
       wager,
       betLocation,
@@ -146,41 +146,41 @@ const AddBet = () => {
               handleChange={handleBetInput}
             />
           )}
-          {/* ODDS MAKER */}
+          {/* SPORTS BOOK */}
           {betSource === "Registered" ? (
             <FormRowSelect
               type="text"
-              name="oddsMaker"
-              labelText="Odds Maker"
-              value={oddsMaker}
+              name="sportsBook"
+              labelText="Sports Book"
+              value={sportsBook}
               handleChange={handleBetInput}
-              options={oddsMakerOptions}
+              options={sportsBookOptions}
             />
           ) : (
             <FormRow
               type="text"
-              name="oddsMaker"
-              labelText="Odds Maker"
-              value={oddsMaker}
+              name="sportsBook"
+              labelText="Sports Book"
+              value={sportsBook}
               handleChange={handleBetInput}
             />
           )}
-          {/* SPREAD */}
+          {/* ODDS */}
           {betSource === "Registered" ? (
             <FormRowSelect
               type="text"
-              name="spread"
-              labelText="Spread"
-              value={spread}
+              name="odds"
+              labelText="Odds"
+              value={odds}
               handleChange={handleBetInput}
-              options={spreadOptions}
+              options={oddsOptions}
             />
           ) : (
             <FormRow
               type="text"
-              name="spread"
-              labelText="Spread"
-              value={spread}
+              name="odds"
+              labelText="Odds"
+              value={odds}
               handleChange={handleBetInput}
             />
           )}
