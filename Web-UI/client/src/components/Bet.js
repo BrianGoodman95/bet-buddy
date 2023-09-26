@@ -9,7 +9,6 @@ import BetInfo from './BetInfo'
 
 const Bet = ({
     _id,
-    betSource,
     eventCategory,
     eventDescription,
     sportsBook,

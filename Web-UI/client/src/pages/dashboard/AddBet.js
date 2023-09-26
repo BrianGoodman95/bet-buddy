@@ -16,8 +16,6 @@ const AddBet = () => {
     editBetId,
     isLoading,
     isEditing,
-    betSource,
-    betSourceOptions,
     eventCategory,
     eventCategoryOptions,
     eventDescription,
@@ -51,7 +49,6 @@ const AddBet = () => {
     e.preventDefault();
     if (isEditing) {
       editBet({
-        betSource,
         eventCategory,
         eventDescription,
         sportsBook,
@@ -68,7 +65,6 @@ const AddBet = () => {
       return
     }
     createBet({
-      betSource,
       eventCategory,
       eventDescription,
       sportsBook,
@@ -99,110 +95,48 @@ const AddBet = () => {
         <h3>{isEditing ? 'Edit Bet' : 'Add Bet'}</h3>
         {showAlert && <Alert />}
         <div className="form-center">
-          {/* BET SOURCE
+          {/* EVENT CATEGAORY */}
           <FormRowSelect
             type="text"
-            name="betSource"
-            labelText="Bet Source"
-            value={betSource}
+            name="eventCategory"
+            labelText="Event Category"
+            value={eventCategory}
             handleChange={handleBetInput}
-            options={betSourceOptions}
-          /> */}
-          {/* EVENT CATEGAORY */}
-          {betSource === "Registered" ? (
-            <FormRowSelect
-              type="text"
-              name="eventCategory"
-              labelText="Event Category"
-              value={eventCategory}
-              handleChange={handleBetInput}
-              options={eventCategoryOptions}
-            />
-          ) : (
-            <FormRow
-              type="text"
-              name="eventCategory"
-              labelText="Event Category"
-              value={eventCategory}
-              handleChange={handleBetInput}
-            />
-          )}
+            options={eventCategoryOptions}
+          />
           {/* EVENT DESCRIPTION */}
-          {betSource === "Registered" ? (
-            <FormRowSelect
-              type="text"
-              name="eventDescription"
-              labelText="Event Description"
-              value={eventDescription}
-              handleChange={handleBetInput}
-              options={eventDescriptionOptions}
-            />
-          ) : (
-            <FormRow
-              type="text"
-              name="eventDescription"
-              labelText="Event Description"
-              value={eventDescription}
-              handleChange={handleBetInput}
-            />
-          )}
+          <FormRow
+            type="text"
+            name="eventDescription"
+            labelText="Event Description"
+            value={eventDescription}
+            handleChange={handleBetInput}
+          />
           {/* SPORTS BOOK */}
-          {betSource === "Registered" ? (
-            <FormRowSelect
-              type="text"
-              name="sportsBook"
-              labelText="Sports Book"
-              value={sportsBook}
-              handleChange={handleBetInput}
-              options={sportsBookOptions}
-            />
-          ) : (
-            <FormRow
-              type="text"
-              name="sportsBook"
-              labelText="Sports Book"
-              value={sportsBook}
-              handleChange={handleBetInput}
-            />
-          )}
+          <FormRowSelect
+            type="text"
+            name="sportsBook"
+            labelText="Sports Book"
+            value={sportsBook}
+            handleChange={handleBetInput}
+            options={sportsBookOptions}
+          />
           {/* ODDS */}
-          {betSource === "Registered" ? (
-            <FormRowSelect
-              type="text"
-              name="odds"
-              labelText="Odds"
-              value={odds}
-              handleChange={handleBetInput}
-              options={oddsOptions}
-            />
-          ) : (
-            <FormRow
-              type="text"
-              name="odds"
-              labelText="Odds"
-              value={odds}
-              handleChange={handleBetInput}
-            />
-          )}
+          <FormRow
+            type="text"
+            name="odds"
+            labelText="Odds"
+            value={odds}
+            handleChange={handleBetInput}
+          />
           {/* PICK */}
-          {betSource === "Registered" ? (
-            <FormRowSelect
-              type="text"
-              name="pick"
-              labelText="Pick"
-              value={pick}
-              handleChange={handleBetInput}
-              options={pickOptions}
-            />
-          ) : (
-            <FormRow
-              type="text"
-              name="pick"
-              labelText="Pick"
-              value={pick}
-              handleChange={handleBetInput}
-            />
-          )}
+          <FormRow
+            type="text"
+            name="pick"
+            labelText="Pick"
+            value={pick}
+            handleChange={handleBetInput}
+          />
           {/* WAGER */}
           <FormRow
             type="Number"

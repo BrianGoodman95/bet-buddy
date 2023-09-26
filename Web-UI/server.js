@@ -11,6 +11,9 @@ import connectDB from './db/connect.js';
 // routers
 import authRouter from './routes/authRoutes.js';
 import betsRouter from './routes/betsRoutes.js';
+import legsRouter from './routes/legsRoutes.js';
+import sportsRouter from './routes/sportsRoutes.js';
+import eventsRouter from './routes/eventsRoutes.js';
 
 // middleware
 import notFoundMiddleware from './middleware/not-found.js';
@@ -55,7 +58,10 @@ app.get('/',(req,res) => {
 
 // custom routes
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/legs', authenticateUser, legsRouter)
 app.use('/api/v1/bets', authenticateUser, betsRouter)
+app.use('/api/v1/sports', authenticateUser, sportsRouter)
+app.use('/api/v1/events', authenticateUser, eventsRouter)
 
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, './client/build', 'index.html'))
