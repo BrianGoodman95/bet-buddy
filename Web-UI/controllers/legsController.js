@@ -1,6 +1,5 @@
 import Leg from '../models/Leg.js'
-import Event from '../models/Event.js'
-import Sport from '../models/Sport.js'
+import { expandEventData } from './utils/expandResultData.js'
 import { StatusCodes } from 'http-status-codes'
 import { BadRequestError, NotFoundError } from '../errors/index.js'
 import checkPermissions from '../utils/checkPermissions.js'
@@ -55,25 +54,6 @@ const deleteLeg = async (req, res) => {
     res.status(StatusCodes.OK).json({ msg: "Leg removed!" })
 }
 
-const addEventData = async (rawResults) => {
-    for (const result of rawResults) {
-        if (result.event_id) {
-            const event = await Event.findOne({ _id: result.event_id });
-            result.event = event;
-        }
-        else {
-            result.event = null;
-        }
-    }
-    const updatedResults = rawResults.map((result) => {
-        // Create a copy of the object without the "event_id" field
-        const { event_id, ...updatedResult } = result;
-        return updatedResult;
-    });
-
-    return updatedResults;
-};
-
 const getLeg = async (req, res) => {
     const { id: legId } = req.params
     const leg = await Leg.findOne({ _id: legId }).lean()
@@ -81,7 +61,8 @@ const getLeg = async (req, res) => {
         throw new NotFoundError(`No Leg with id ${legId} Found`)
     }
     checkPermissions(req.user, leg.createdBy);
-    const updatedLeg = await addEventData([leg]);
+
+    const updatedLeg = await expandEventData([leg]);
 
     res.status(StatusCodes.OK).json({ leg: updatedLeg[0] });
 }
@@ -102,10 +83,10 @@ const getAllLegs = async (req, res) => {
     }
 
     /* ###### ALL BETS QUERY ###### */
-    let allLegs = Leg.find(queryObject)
-    allLegs = allLegs.sort('-createdAt')
-    const allResults = await allLegs.lean()
-    const updatedLegs = await addEventData(allResults);
+    let legResults = Leg.find(queryObject)
+    legResults = legResults.sort('-createdAt')
+    const allLegs = await legResults.lean()
+    const updatedLegs = await expandEventData(allLegs);
 
     // Get all events and get the lists of each column to use for filters
     const statuses = [...new Set(updatedLegs.map(leg => leg.status))];

@@ -38,7 +38,7 @@ export const LegSchema = new mongoose.Schema({
         maxlength: 100,
     },
     // Metric min/max values are only needed for "quantity" legs where the selection will be over/under/between
-    // Not needed for timing lefs where the selection is Yes/No (barkley to score the first td of the game)
+    // Not needed for timing legs where the selection is Yes/No (barkley to score the first td of the game)
     metricMinValue: { // The lower value of the thing we care about in the leg
         type: Number,
         // required: [true, 'Please provide the metricMinValue'],
@@ -55,11 +55,6 @@ export const LegSchema = new mongoose.Schema({
     odds: {
         type: Number,
         required: [true, 'Please provide the odds'],
-        maxlength: 10,
-    },
-    stake: {
-        type: Number,
-        required: [true, 'Please provide the stake'],
         maxlength: 10,
     },
     status: {

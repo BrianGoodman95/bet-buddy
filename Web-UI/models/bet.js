@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import { LegSchema } from "./Leg.js";
 
 const BetSchema = new mongoose.Schema(
     {

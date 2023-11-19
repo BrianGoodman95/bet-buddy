@@ -6,6 +6,6 @@ import { createEvent, deleteEvent, getAllEvents, updateEvent, getEvent } from '.
 
 router.route('/').post(checkTestUser, createEvent).get(getAllEvents);
 // need to put the :id one last
-router.route('/:id').delete(checkTestUser, deleteEvent).patch(checkTestUser, updateEvent).get(checkTestUser, getEvent);
+router.route('/:id').delete(checkTestUser, deleteEvent).patch(checkTestUser, updateEvent).get(getEvent);
 
 export default router;

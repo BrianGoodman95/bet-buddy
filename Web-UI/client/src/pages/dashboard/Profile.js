@@ -8,20 +8,19 @@ const Profile = () => {
   const { user, showAlert, updateUser, isLoading, clearAlert } = useAppContext()
   const [name, setName] = useState(user?.name)
   const [email, setEmail] = useState(user?.email)
-  const [lastName, setLastName] = useState(user?.lastName)
   const [location, setLocation] = useState(user?.location)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // if (!name || !email || !lastName || !location) {
+    // if (!name || !email || !location) {
     //   displayFailAlert()
     //   return
     // }
     // console.log('form submitted')
-    updateUser({ name, email, lastName, location })
+    updateUser({ name, email, location })
   }
 
-  useClearAlertEffect(showAlert, clearAlert, [email, name, lastName, location])
+  useClearAlertEffect(showAlert, clearAlert, [email, name, location])
 
   return (
     <Wrapper>
@@ -35,13 +34,6 @@ const Profile = () => {
             name="name"
             value={name}
             handleChange={(e) => setName(e.target.value)}
-          />
-          <FormRow
-            type="text"
-            labelText='Last Name'
-            name="lastName"
-            value={lastName}
-            handleChange={(e) => setLastName(e.target.value)}
           />
           <FormRow
             type="text"

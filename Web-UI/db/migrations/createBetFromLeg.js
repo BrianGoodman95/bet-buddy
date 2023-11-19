@@ -7,12 +7,12 @@ const currentModuleURL = import.meta.url;
 const __filename = fileURLToPath(currentModuleURL);
 const __dirname = path.dirname(__filename);
 // Determine the path to the .env file relative to this script
-const envPath = path.resolve(__dirname, '../.env'); // Adjust the path as needed
+const envPath = path.resolve(__dirname, '../../.env'); // Adjust the path as needed
 // Load environment variables from the specified path
 dotenv.config({ path: envPath });
 
 import connectDB from '../db/connect.js';
-import Bet from '../models/bet.js'; // Update the import to use Bet model
+import Bet from '../models/Bet.js'; // Update the import to use Bet model
 import Leg from '../models/Leg.js';
 import mongoose from 'mongoose';
 

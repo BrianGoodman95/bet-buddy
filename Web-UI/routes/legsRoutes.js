@@ -7,6 +7,6 @@ import { createLeg, deleteLeg, getAllLegs, getLeg, updateLeg, showStats } from '
 router.route('/').post(checkTestUser, createLeg).get(getAllLegs);
 // need to put the :id one last
 router.route('/stats').get(showStats);
-router.route('/:id').delete(checkTestUser, deleteLeg).patch(checkTestUser, updateLeg).get(checkTestUser, getLeg);
+router.route('/:id').delete(checkTestUser, deleteLeg).patch(checkTestUser, updateLeg).get(getLeg);
 
 export default router;

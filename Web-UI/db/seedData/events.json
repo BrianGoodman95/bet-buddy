@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Super Bowl LVI",
+    "description": "The championship game of the NFL",
+    "externalEventId": "SEED-SB56",
+    "startTime": "2023-02-13T18:30:00Z",
+    "endTime": "2023-02-13T22:30:00Z",
+    "homeTeam": "Los Angeles Rams",
+    "awayTeam": "Cincinnati Bengals",
+    "location": "SoFi Stadium, Inglewood, CA",
+    "status": "Upcoming",
+    "sport_league": "NFL"
+  },
+  {
+    "name": "AFC Championship",
+    "description": "The AFC Conference Championship Game",
+    "externalEventId": "SEED-AFC-CHAMPIONSHIP-2023",
+    "startTime": "2023-01-29T19:00:00Z",
+    "endTime": "2023-01-29T23:00:00Z",
+    "homeTeam": "Kansas City Chiefs",
+    "awayTeam": "Buffalo Bills",
+    "location": "Arrowhead Stadium, Kansas City, MO",
+    "status": "Upcoming",
+    "sport_league": "NFL"
+  },
+  {
+    "name": "NBA Finals",
+    "description": "The championship series of the NBA",
+    "externalEventId": "SEED-NBA-FINALS-2023",
+    "startTime": "2023-06-01T20:00:00Z",
+    "endTime": "2023-06-15T22:00:00Z",
+    "location": "TBD",
+    "status": "Upcoming",
+    "sport_league": "NBA"
+  },
+  {
+    "name": "NBA All-Star Game",
+    "description": "The annual NBA All-Star Game",
+    "externalEventId": "SEED-NBA-ALL-STAR-2023",
+    "startTime": "2023-02-19T18:00:00Z",
+    "endTime": "2023-02-19T22:00:00Z",
+    "location": "Spectrum Center, Charlotte, NC",
+    "status": "Upcoming",
+    "sport_league": "MLB"
+  },
+  {
+    "name": "UFC 300",
+    "description": "A major UFC event",
+    "externalEventId": "SEED-UFC-300",
+    "startTime": "2023-04-22T19:00:00Z",
+    "endTime": "2023-04-22T23:00:00Z",
+    "location": "T-Mobile Arena, Las Vegas, NV",
+    "status": "Upcoming",
+    "sport_league": "UFC"
+  },
+  {
+    "name": "Stanley Cup Finals",
+    "description": "The championship series of the NHL",
+    "externalEventId": "SEED-STANLEY-CUP-FINALS-2023",
+    "startTime": "2023-06-05T19:30:00Z",
+    "endTime": "2023-06-20T22:00:00Z",
+    "homeTeam": "Team X",
+    "awayTeam": "Team Y",
+    "location": "TBD",
+    "status": "Upcoming",
+    "sport_league": "NHL"
+  },
+  {
+    "name": "Winter Classic",
+    "description": "An annual outdoor NHL game",
+    "externalEventId": "SEED-NHL-WINTER-CLASSIC-2023",
+    "startTime": "2023-01-01T13:00:00Z",
+    "endTime": "2023-01-01T16:00:00Z",
+    "location": "Target Field, Minneapolis, MN",
+    "status": "Upcoming",
+    "sport_league": "NHL"
+  },
+  {
+    "name": "World Series",
+    "description": "The championship series of MLB",
+    "externalEventId": "SEED-MLB-WORLD-SERIES-2023",
+    "startTime": "2023-10-24T20:00:00Z",
+    "endTime": "2023-11-02T22:30:00Z",
+    "homeTeam": "Team M",
+    "awayTeam": "Team N",
+    "location": "TBD",
+    "status": "Upcoming",
+    "sport_league": "MLB"
+  },
+  {
+    "name": "MLB All-Star Game",
+    "description": "The annual MLB All-Star Game",
+    "externalEventId": "SEED-MLB-ALL-STAR-2023",
+    "startTime": "2023-07-11T18:00:00Z",
+    "endTime": "2023-07-11T22:00:00Z",
+    "location": "Dodger Stadium, Los Angeles, CA",
+    "status": "Upcoming",
+    "sport_league": "MLB"
+  },
+  {
+    "name": "MLS Cup Final",
+    "description": "The championship match of MLS",
+    "externalEventId": "SEED-MLS-CUP-FINAL-2023",
+    "startTime": "2023-12-10T15:30:00Z",
+    "endTime": "2023-12-10T18:30:00Z",
+    "homeTeam": "Team P",
+    "awayTeam": "Team Q",
+    "location": "TBD",
+    "status": "Upcoming",
+    "sport_league": "MLS"
+  }
+]

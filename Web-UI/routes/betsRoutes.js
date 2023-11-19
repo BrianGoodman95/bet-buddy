@@ -7,6 +7,6 @@ import { createBet, deleteBet, getAllBets, getBet, updateBet, showStats } from '
 router.route('/').post(checkTestUser, createBet).get(getAllBets);
 // need to put the :id one last
 router.route('/stats').get(showStats);
-router.route('/:id').delete(checkTestUser, deleteBet).patch(checkTestUser, updateBet).get(checkTestUser, getBet);
+router.route('/:id').delete(checkTestUser, deleteBet).patch(checkTestUser, updateBet).get(getBet);
 
 export default router;

@@ -1,0 +1,198 @@
+[
+  {
+    "legDescription": "Los Angeles Rams will score the first touchdown of the game",
+    "external_event_id": "SEED-SB56",
+    "subject": "Los Angeles Rams",
+    "timeFrame": "Game",
+    "metric": "First Touchdown",
+    "selection": "Yes",
+    "odds": 2.5,
+    "status": "Won"
+  },
+  {
+    "legDescription": "More than 21 Total points will be scored in the 1st quarter",
+    "external_event_id": "SEED-SB56",
+    "subject": "Both Teams",
+    "timeFrame": "1st Quarter",
+    "metric": "Total Points",
+    "selection": "Over",
+    "metricMinValue": 21,
+    "odds": 1.8,
+    "status": "Push"
+  },
+  {
+    "legDescription": "There be a successful field goal in the last 2 minutes of the game",
+    "external_event_id": "SEED-SB56",
+    "subject": "Both Teams",
+    "timeFrame": "Match",
+    "metric": "Field Goal",
+    "selection": "Yes",
+    "odds": 3.0,
+    "status": "Won"
+  },
+  {
+    "legDescription": "More than 210 Total points will be scored in Game 1",
+    "external_event_id": "SEED-NBA-FINALS-2023",
+    "subject": "Both Teams",
+    "timeFrame": "Match",
+    "metric": "Total Points",
+    "selection": "Over",
+    "metricMinValue": 210,
+    "odds": 1.7,
+    "status": "Won"
+  },
+  {
+    "legDescription": "LeBron James will score a triple-double in any game 2 of the Finals",
+    "external_event_id": "SEED-NBA-FINALS-2023",
+    "subject": "LeBron James",
+    "timeFrame": "Game 2",
+    "metric": "Triple-Double",
+    "selection": "Yes",
+    "odds": 4.2,
+    "status": "Lost"
+  },
+  {
+    "legDescription": "Celtics will win Game 3 of the NBA finals",
+    "external_event_id": "SEED-NBA-FINALS-2023",
+    "subject": "Boston Celtics",
+    "timeFrame": "Game 3",
+    "metric": "Winner",
+    "selection": "Yes",
+    "odds": 2.0,
+    "status": "Won"
+  },
+  {
+    "legDescription": "The main event will not go the distance",
+    "external_event_id": "SEED-UFC-300",
+    "subject": "Main Event",
+    "timeFrame": "Match",
+    "metric": "Fight Duration",
+    "selection": "No",
+    "odds": 1.6,
+    "status": "Open"
+  },
+  {
+    "legDescription": "More than 3 Total knockouts in the main card",
+    "external_event_id": "SEED-UFC-300",
+    "subject": "Main Card",
+    "timeFrame": "Match",
+    "metric": "Total Knockouts",
+    "selection": "Over",
+    "metricMinValue": 3,
+    "odds": 2.3,
+    "status": "Open"
+  },
+  {
+    "legDescription": "There will be a submission in the co-main event",
+    "external_event_id": "SEED-UFC-300",
+    "subject": "Co-Main Event",
+    "timeFrame": "Match",
+    "metric": "Submission",
+    "selection": "Yes",
+    "odds": 3.5,
+    "status": "Open"
+  },
+  {
+    "legDescription": "Patrick Mahomes will throw 3 or more touchdowns",
+    "external_event_id": "SEED-AFC-CHAMPIONSHIP-2023",
+    "subject": "Patrick Mahomes",
+    "timeFrame": "Game",
+    "metric": "Touchdowns",
+    "selection": "Over",
+    "metricMinValue": 3,
+    "odds": 2.2,
+    "status": "Won"
+  },
+  {
+    "legDescription": "Buffalo Bills will win the AFC Championship",
+    "external_event_id": "SEED-AFC-CHAMPIONSHIP-2023",
+    "subject": "Buffalo Bills",
+    "timeFrame": "Game",
+    "metric": "Winner",
+    "selection": "Yes",
+    "odds": 2.5,
+    "status": "Lost"
+  },
+  {
+    "legDescription": "LeBron James will win MVP at the NBA All-Star Game",
+    "external_event_id": "SEED-NBA-ALL-STAR-2023",
+    "subject": "LeBron James",
+    "timeFrame": "Game",
+    "metric": "MVP",
+    "selection": "Yes",
+    "odds": 3.0,
+    "status": "Won"
+  },
+  {
+    "legDescription": "Giannis Antetokounmpo will score 30+ points in the NBA All-Star Game",
+    "external_event_id": "SEED-NBA-ALL-STAR-2023",
+    "subject": "Giannis Antetokounmpo",
+    "timeFrame": "Game",
+    "metric": "Points",
+    "selection": "Over",
+    "metricMinValue": 30,
+    "odds": 2.8,
+    "status": "Won"
+  },
+  {
+    "legDescription": "The Tampa Bay Lightning will win the Stanley Cup",
+    "external_event_id": "SEED-STANLEY-CUP-FINALS-2023",
+    "subject": "Tampa Bay Lightning",
+    "timeFrame": "Series",
+    "metric": "Winner",
+    "selection": "Yes",
+    "odds": 1.8,
+    "status": "Won"
+  },
+  {
+    "legDescription": "The Vegas Golden Knights will reach the Stanley Cup Finals",
+    "external_event_id": "SEED-STANLEY-CUP-FINALS-2023",
+    "subject": "Vegas Golden Knights",
+    "timeFrame": "Series",
+    "metric": "Finals Appearance",
+    "selection": "Yes",
+    "odds": 2.2,
+    "status": "Won"
+  },
+  {
+    "legDescription": "The NHL Winter Classic will have an outdoor temperature below freezing",
+    "external_event_id": "SEED-NHL-WINTER-CLASSIC-2023",
+    "subject": "Weather",
+    "timeFrame": "Game",
+    "metric": "Temperature",
+    "selection": "Under",
+    "metricMaxValue": 32,
+    "odds": 2.5,
+    "status": "Lost"
+  },
+  {
+    "legDescription": "The LA Dodgers will win the MLB World Series",
+    "external_event_id": "SEED-MLB-WORLD-SERIES-2023",
+    "subject": "LA Dodgers",
+    "timeFrame": "Series",
+    "metric": "Winner",
+    "selection": "Yes",
+    "odds": 2.2,
+    "status": "Open"
+  },
+  {
+    "legDescription": "The Texas Rangers will score first in the MLB World Series",
+    "external_event_id": "SEED-MLB-WORLD-SERIES-2023",
+    "subject": "Texas Rangers",
+    "timeFrame": "Series",
+    "metric": "Firs to Score",
+    "selection": "Yes",
+    "odds": 2.0,
+    "status": "Open"
+  },
+  {
+    "legDescription": "Los Angeles FC will win the MLS Cup Final",
+    "external_event_id": "SEED-MLS-CUP-FINAL-2023",
+    "subject": "Los Angeles FC",
+    "timeFrame": "Game",
+    "metric": "Winner",
+    "selection": "Yes",
+    "odds": 2.0,
+    "status": "Open"
+  }
+]

@@ -7,7 +7,7 @@
   "scripts": {
     "install-client": "cd client && npm install",
     "install-all": "npm run install-client && npm install",
-    "build-client": "cd client && npm run build",
+    "build-client": "npm run install-all && cd client && npm run build",
     "build": "npm run build-client && npm install",
     "start": "node server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",

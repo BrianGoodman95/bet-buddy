@@ -16,7 +16,7 @@ export const EventSchema = new mongoose.Schema({
     externalEventId: {
         type: String,
         default: Schema.Types.ObjectId,
-        maxlength: 50
+        maxlength: 100
     },
     startTime: {
         type: Date
@@ -46,7 +46,12 @@ export const EventSchema = new mongoose.Schema({
         type: String,
         enum: ["Upcoming", "Live", "Completed"],
         default: "Upcoming"
-    }
+    },
+    createdBy: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+        required: [true, 'Please provide the user']
+    },
 },
 { timestamps: true }
 );

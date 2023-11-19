@@ -1,5 +1,7 @@
-import Bet from '../models/bet.js'
+import Bet from '../models/Bet.js'
 import Leg from '../models/Leg.js'
+import { expandLegData } from './utils/expandResultData.js'
+import prepareBetData from '../utils/calcBetAttributes.js'
 import { StatusCodes } from 'http-status-codes'
 import { BadRequestError, NotFoundError } from '../errors/index.js'
 import checkPermissions from '../utils/checkPermissions.js'
@@ -9,20 +11,22 @@ import moment from 'moment';
 // import Math from 'math';
 
 const createBet = async (req, res) => {
-    const { leg_ids, sportsBook, totalOdds, totalStake, expectedBetReturn, status } = req.body
-    if (!leg_ids || !sportsBook || !totalOdds || !totalStake || !status) {
+    const { leg_ids, sportsBook, totalStake, status } = req.body
+    if (!leg_ids || !sportsBook || !totalStake || !status) {
         throw new BadRequestError('Please Provide All Values')
     }
     req.body.createdBy = req.user.userId
-    // req.body.customEventId = uuidv4()
-    const bet = await Bet.create(req.body)
+    // We should probably move this business logic to the front end or middlewear
+    const updatedBet = await prepareBetData(req.body);
+
+    const bet = await Bet.create(updatedBet)
     res.status(StatusCodes.CREATED).json({ bet })
 }
 
 const updateBet = async (req, res) => {
     const { id: betId } = req.params
-    const { leg_ids, sportsBook, totalOdds, totalStake, expectedBetReturn, status } = req.body
-    if (!leg_ids || !sportsBook || !totalOdds || !totalStake || !status) {
+    const { leg_ids, sportsBook, totalStake, status } = req.body
+    if (!leg_ids || !sportsBook || !totalStake || !status) {
         throw new BadRequestError('Please Provide All Values')
     }
 
@@ -33,12 +37,14 @@ const updateBet = async (req, res) => {
 
     checkPermissions(req.user, bet.createdBy);
 
+    const updatedBet = await prepareBetData(req.body);
+
     const updateBet = await Bet.findOneAndUpdate(
         { _id: betId },
-        req.body,
+        updatedBet,
         { new: true, runValidators: true }
     );
-    // const updateBet = await Bet.create(req.body)
+
     res.status(StatusCodes.OK).json({ updateBet })
 }
 
@@ -54,29 +60,6 @@ const deleteBet = async (req, res) => {
     res.status(StatusCodes.OK).json({ msg: "Bet removed!" })
 }
 
-const addLegData = async (rawResults) => {
-    for (const result of rawResults) {
-        if (result.leg_ids) {
-            const legs = [];
-            for (const leg_id of result.leg_ids) {
-                const leg = await Leg.findOne({ _id: leg_id });
-                legs.push(leg);
-            }
-            result.legs = legs
-        }
-        else {
-            result.legs = null;
-        }
-    }
-    const updatedResults = rawResults.map(result => {
-        // Create a copy of the object without the "sport_id" field
-        const { leg_ids, ...updatedResult } = result;
-        return updatedResult;
-    });
-
-    return updatedResults;
-};
-
 const getBet = async (req, res) => {
     const { id: betId } = req.params
     const bet = await Bet.findOne({ _id: betId }).lean();
@@ -84,7 +67,8 @@ const getBet = async (req, res) => {
         throw new NotFoundError(`No Bet with id ${betId} Found`)
     }
     checkPermissions(req.user, bet.createdBy);
-    const updatedBet = await addLegData([bet]);
+
+    const updatedBet = await expandLegData([bet]);
 
     res.status(StatusCodes.OK).json({ bet: updatedBet[0] })
 }
@@ -109,10 +93,10 @@ const getAllBets = async (req, res) => {
 
     /* ###### ALL BETS QUERY ###### */
     // define query and sort condition for all bets
-    let allBets = Bet.find(queryObject)
-    allBets = allBets.sort('-createdAt')
-    const allResults = await allBets.lean()
-    const updatedBets = await addLegData(allResults);
+    let betResults = Bet.find(queryObject)
+    betResults = betResults.sort('-createdAt')
+    const allBets = await betResults.lean()
+    const updatedBets = await expandLegData(allBets); //allBets for much faster performance
 
     const sportsBooks = [...new Set(updatedBets.map(bet => bet.sportsBook))];
     const statuses = [...new Set(updatedBets.map(bet => bet.status))];
@@ -139,7 +123,7 @@ const getAllBets = async (req, res) => {
     }
     
     // Append the response with extra information inlcuding the query results (bets), the number of bets and num of pages
-    res.status(StatusCodes.OK).json({ 
+        res.status(StatusCodes.OK).json({ 
         bets: pageResults,
         filterOptions: {
             sportsBookOptions: sportsBooks,
