@@ -27,19 +27,30 @@ const UserSchema = new mongoose.Schema({
         minlength: 6,
         select: false, // exclude it in responses by default unless overridden
     },
-    lastName: {
-        type: String, 
-        trim: true,
-        minlength:1,
-        maxlength: 20,
-        default: "lastName"
-    },
     location: {
         type: String, 
         trim: true,
         minlength:1,
         maxlength: 20,
         default: "my city"
+    },
+    sportsBooks: {
+        type: [String],
+        enum: ["Bet365", "Fanduel", "The Score", "DraftKings", "Proline"],
+        default: ["Bet365"]
+    },
+    OddsUnits: {
+        type: String,
+        enum: ["Decimal", "American"],
+        default: "Decimal"
+    },
+    appTheme: {
+        type: String,
+        enum: ["Light", "Dark"],
+        default: "Light"
+    },
+    favTeams: {
+        type: [String]
     },
 });
 

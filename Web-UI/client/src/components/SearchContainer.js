@@ -70,15 +70,6 @@ const SearchContainer = () => {
                         value={localSearch}
                         handleChange={optimizedDebounce}
                     />
-                    {/* BET SOURCE
-                    <FormRowSelect
-                        type="text"
-                        name="searchSource"
-                        labelText="Bet Source"
-                        value={searchSource}
-                        handleChange={handleSearch}
-                        options={['all', ...betSourceOptions]}
-                    /> */}
                     {/* EVENT CATEGAORY */}
                     <FormRowSelect
                         type="text"

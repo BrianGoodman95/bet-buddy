@@ -1,6 +1,5 @@
 [
   {
-    "betSource": "Custom",
     "eventCategory": "MLB",
     "eventDescription": "Toronto Blue Jays vs New York Yankees",
     "eventId": "01GYNCKZ19EX8WHJPQ37Y93D1A",
@@ -15,7 +14,6 @@
     "createdAt": "2022-12-06T22:01:33Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "Eating",
     "eventDescription": "How Many Marshmallows Greg can fit in his mouth",
     "eventId": "6F7G8H9I0J1K2L3M4N5O6P",
@@ -30,7 +28,6 @@
     "createdAt": "2023-05-18T14:10:00Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "NFL",
     "eventDescription": "Kansas City Chiefs vs Buffalo Bills",
     "eventId": "9X8Y7Z6A5B4C3D2E1F0G",
@@ -45,7 +42,6 @@
     "createdAt": "2023-05-10T18:45:21Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "Pregnancies",
     "eventDescription": "How many months until the baby will be born",
     "eventId": "6F7G8H9I0J1K2L3M4N5O6P",
@@ -60,7 +56,6 @@
     "createdAt": "2023-05-18T14:10:00Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "Soccer",
     "eventDescription": "UEFA Champions League Semi-Final",
     "eventId": "8W7X6Y5Z4A3B2C1D0E",
@@ -75,7 +70,6 @@
     "createdAt": "2023-04-18T20:30:00Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "MLB",
     "eventDescription": "New York Yankees vs Boston Red Sox",
     "eventId": "7Y8Z9A0B1C2D3E4F5G",
@@ -90,7 +84,6 @@
     "createdAt": "2023-03-06T22:15:10Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "NHL",
     "eventDescription": "Toronto Maple Leafs vs Montreal Canadiens",
     "eventId": "6X7Y8Z9A0B1C2D3E4F",
@@ -105,7 +98,6 @@
     "createdAt": "2023-02-12T17:55:40Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "NBA",
     "eventDescription": "Brooklyn Nets vs Los Angeles Lakers",
     "eventId": "5A6B7C8D9E0F1G2H3I",
@@ -120,7 +112,6 @@
     "createdAt": "2023-01-05T21:10:00Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "NBA",
     "eventDescription": "Brooklyn Nets vs Los Angeles Lakers",
     "eventId": "5A6B7C8D9E0F1G2H3I",
@@ -135,7 +126,6 @@
     "createdAt": "2023-01-05T21:10:00Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "NHL",
     "eventDescription": "Toronto Maple Leafs vs Montreal Canadiens",
     "eventId": "6X7Y8Z9A0B1C2D3E4F",
@@ -150,7 +140,6 @@
     "createdAt": "2023-02-12T17:55:40Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "MLB",
     "eventDescription": "New York Yankees vs Boston Red Sox",
     "eventId": "7Y8Z9A0B1C2D3E4F5G",
@@ -165,7 +154,6 @@
     "createdAt": "2023-03-06T22:15:10Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "Soccer",
     "eventDescription": "UEFA Champions League Semi-Final",
     "eventId": "8W7X6Y5Z4A3B2C1D0E",
@@ -180,7 +168,6 @@
     "createdAt": "2023-04-18T20:30:00Z"
   },
   {
-    "betSource": "Custom",
     "eventCategory": "NFL",
     "eventDescription": "Kansas City Chiefs vs Buffalo Bills",
     "eventId": "9X8Y7Z6A5B4C3D2E1F0G",

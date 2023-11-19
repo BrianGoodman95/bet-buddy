@@ -1,0 +1,26 @@
+[
+  {
+    "name": "American Football",
+    "league": "NFL"
+  },
+  {
+    "name": "Basketball",
+    "league": "NBA"
+  },
+  {
+    "name": "Mixed Martial Arts",
+    "league": "UFC"
+  },
+  {
+    "name": "Hockey",
+    "league": "NHL"
+  },
+  {
+    "name": "Baseball",
+    "league": "MLB"
+  },
+  {
+    "name": "Soccer",
+    "league": "MLS"
+  }
+]

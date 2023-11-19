@@ -147,7 +147,6 @@ const reducer = (state, action) => {
             showAlert: false,
             editBetId: '',
             filterOptions: {},
-            betSource: "Custom",
             eventCategory: '',
             eventDescription: '',
             sportsBook: '',
@@ -208,12 +207,11 @@ const reducer = (state, action) => {
     }
     if (action.type === SET_EDIT_BET) {
         const bet = state.bets.find(bet => bet._id === action.payload.id)
-        const { _id, betSource, eventCategory, eventDescription, sportsBook, pick, odds, wager, betStatus } = bet
+        const { _id, eventCategory, eventDescription, sportsBook, pick, odds, wager, betStatus } = bet
         return {
             ...state,
             isEditing: true,
             editBetId: _id,
-            betSource: betSource,
             eventCategory: eventCategory,
             eventDescription: eventDescription,
             sportsBook: sportsBook,

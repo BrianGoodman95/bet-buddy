@@ -1,0 +1,22 @@
+[
+  {
+      "name": "Demo User",
+      "email": "demoUser@test.com",
+      "password": "secret",
+      "location": "New York",
+      "sportsBooks": ["Bet365", "DraftKings"],
+      "OddsUnits": "Decimal",
+      "appTheme": "Light",
+      "favTeams": ["New York Yankees", "Los Angeles Lakers"]
+  },
+  {
+      "name": "Brian Test",
+      "email": "brian@test.com",
+      "password": "secret",
+      "location": "Ottawa",
+      "sportsBooks": ["Bet365"],
+      "OddsUnits": "American",
+      "appTheme": "Dark",
+      "favTeams": ["Toronto Blue Jays", "Toronto Maple Leafs", "Toronto Raptors"]
+  }
+]

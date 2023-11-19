@@ -28,7 +28,6 @@ const register = async (req, res) => { //(req, res, next))
     // it by doing these accrobatics
     res.status(StatusCodes.CREATED).json({user: {
         name:user.name,
-        lastName:user.lastName,
         email:user.email,
         location:user.location,
     }, 
@@ -65,16 +64,19 @@ const login = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    const {email, name, lastName, location} = req.body
-    if (!email || !name || !lastName || !location){
+    const {email, name, location, oddsUnits, sportsBooks, appTheme, favTeams} = req.body
+    if (!email || !name ){
         throw new BadRequestError("Please Provide All Values")
     }
     const user = await User.findOne({_id: req.user.userId})
 
     user.email = email
     user.name = name
-    user.lastName = lastName
     user.location = location
+    user.oddsUnits = oddsUnits
+    user.sportsBooks = sportsBooks
+    user.appTheme = appTheme
+    user.favTeams = favTeams
 
     await user.save()
 

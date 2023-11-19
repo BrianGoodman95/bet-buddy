@@ -49,10 +49,11 @@ export const initialState = {
     isEditing: false,
     editBetId: '',
     filterOptions: {},
-    betSource: "Custom",
     eventCategory: '',
+    eventCategoryOptions: ["NFL", "MLB", "NBA", "NHL", "UFC", "MLS"],
     eventDescription: '',
     sportsBook: '',
+    sportsBookOptions: ["Bet365", "FanDuel", "DraftKings"],
     pick: '',
     odds: '',
     wager: '',
@@ -302,8 +303,8 @@ const AppProvider = ({ children }) => {
     }
 
     const getBets = async () => {
-        const { searchDescription, searchSource, searchCategory, searchSportsBook, searchPick, searchStatus, sort, page } = state
-        let url = `/bets?page=${page}&betSource=${searchSource}&eventCategory=${searchCategory}&sportsBook=${searchSportsBook}&pick=${searchPick}&betStatus=${searchStatus}&sort=${sort}`
+        const { searchDescription, searchCategory, searchSportsBook, searchPick, searchStatus, sort, page } = state
+        let url = `/bets?page=${page}&eventCategory=${searchCategory}&sportsBook=${searchSportsBook}&pick=${searchPick}&betStatus=${searchStatus}&sort=${sort}`
         if (searchDescription) {
             url = url + `&eventDescription=${searchDescription}`
         }

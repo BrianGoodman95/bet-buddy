@@ -1,0 +1,112 @@
+[
+    {
+        "sportsBook": "Bet365",
+        "totalOdds": 5.0,
+        "creditStake": 10,
+        "totalStake": 30,
+        "oddsBoost": 0.2,
+        "expectedBetReturn": 0,
+        "bonusReturn": 0,
+        "betReturn": 0,
+        "status": "Won"
+    },
+    {
+        "sportsBook": "DraftKings",
+        "totalOdds": 3.5,
+        "creditStake": 0,
+        "totalStake": 50,
+        "oddsBoost": 0,
+        "expectedBetReturn": 0,
+        "bonusReturn": 0,
+        "betReturn": 0,
+        "status": "Live"
+    },
+    {
+        "sportsBook": "Fanduel",
+        "totalOdds": 2.0,
+        "creditStake": 0,
+        "totalStake": 25,
+        "oddsBoost": 0,
+        "expectedBetReturn": 0,
+        "bonusReturn": 0,
+        "betReturn": 0,
+        "status": "Lost"
+    },
+    {
+        "sportsBook": "Bet365",
+        "totalOdds": 4.5,
+        "creditStake": 20,
+        "totalStake": 45,
+        "oddsBoost": 0.3,
+        "expectedBetReturn": 0,
+        "bonusReturn": 0,
+        "betReturn": 0,
+        "status": "Unsettled"
+    },
+    {
+        "sportsBook": "DraftKings",
+        "totalOdds": 2.2,
+        "creditStake": 0,
+        "totalStake": 40,
+        "oddsBoost": 0,
+        "expectedBetReturn": 0,
+        "bonusReturn": 0,
+        "betReturn": 0,
+        "status": "Won"
+    },
+    {
+        "sportsBook": "Fanduel",
+        "totalOdds": 3.0,
+        "creditStake": 0,
+        "totalStake": 15,
+        "oddsBoost": 0,
+        "expectedBetReturn": 0,
+        "bonusReturn": 0,
+        "betReturn": 0,
+        "status": "Won"
+    },
+    {
+        "sportsBook": "Bet365",
+        "totalOdds": 2.8,
+        "creditStake": 0,
+        "totalStake": 20,
+        "oddsBoost": 0,
+        "expectedBetReturn": 0,
+        "bonusReturn": 0,
+        "betReturn": 0,
+        "status": "Unsettled"
+    },
+    {
+        "sportsBook": "DraftKings",
+        "totalOdds": 6.0,
+        "creditStake": 10,
+        "totalStake": 60,
+        "oddsBoost": 0.5,
+        "expectedBetReturn": 0,
+        "bonusReturn": 0,
+        "betReturn": 0,
+        "status": "Lost"
+    },
+    {
+        "sportsBook": "Fanduel",
+        "totalOdds": 4.2,
+        "creditStake": 0,
+        "totalStake": 35,
+        "oddsBoost": 0,
+        "expectedBetReturn": 0,
+        "bonusReturn": 0,
+        "betReturn": 0,
+        "status": "Unsettled"
+    },
+    {
+        "sportsBook": "Bet365",
+        "totalOdds": 3.7,
+        "creditStake": 0,
+        "totalStake": 30,
+        "oddsBoost": 0,
+        "expectedBetReturn": 0,
+        "bonusReturn": 0,
+        "betReturn": 0,
+        "status": "Won"
+    }
+]
